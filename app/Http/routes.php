@@ -17,4 +17,15 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'ConcertHallController@index');
+
+Route::get('/afisha', 'ConcertHallController@posters');
+
+Route::get('/afisha/{concert_name}/{date_time}', 'ConcertHallController@concert');
+
+Route::get('/biletnye_kassy', 'ConcertHallController@offices');
+
+Route::get('/contact', 'ConcertHallController@contact');
+
+Route::get('/hall', 'ConcertHallController@hall');
+
