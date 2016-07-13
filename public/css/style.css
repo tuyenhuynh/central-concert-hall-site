@@ -1,0 +1,186 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.inline{
+    float:left;
+}
+
+.clear-both{
+    clear:both;
+}
+
+.concert-image {
+    width:100%;
+    margin-top: 10px;
+}
+
+.poster-item {
+    margin-top: 20px;
+}
+.concert-list > ul > li{
+    margin-left: 0;
+}
+
+.social-links {
+    margin-bottom:30px;
+}
+
+.social-links > a {
+    margin-left:10px;
+}
+
+.concert-time {
+    margin-left:10px;
+    color:#d17581;
+}
+ul{
+    list-style-type: none;
+}
+
+.date > button {
+    float:left;
+    margin-left: 30px;
+    width:60px;
+    height:50px;
+}
+
+li.date {
+    background-color: #ddddee;
+}
+
+.poster-date{
+    margin-top:20px;
+    margin-bottom: 50px;
+}
+
+.date > a {
+    float:left;
+    margin-left: 35px;
+    width:60px;
+    height:50px;
+    text-decoration: none;
+}
+
+.btn-grey {
+    background-color: #DDDDDD;
+}
+
+.navbar-custom{
+    background:#F9F9F9;
+    border-color: #ffffff;
+}
+.padding {
+    margin-top:50px;
+}
+
+.path{
+    margin-top:15px;
+}
+
+.poster-header{
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+ul.nav.navbar-right > li  {
+    float:left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+}
+
+.navigation {
+    border:1px solid black;
+}
+.blog-masthead {
+    background-color: #428bca;
+    -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+.blog-nav-item {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    font-weight: 500;
+    color: #cdddeb;
+}
+
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+    color: #fff;
+}
+.blog-nav .active:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    vertical-align: middle;
+    content: " ";
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid;
+    border-left: 5px solid transparent;
+}
+
+.test{
+    color:#ffffff;
+}
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
