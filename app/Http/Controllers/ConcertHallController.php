@@ -34,7 +34,8 @@ class ConcertHallController extends Controller
     }
 
     public function contact() {
-        return view('contact');
+        $about_text = file_get_contents('about.txt');
+        return view('contact', compact('about_text'));
     }
 
     public function offices(){

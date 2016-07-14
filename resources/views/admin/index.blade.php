@@ -1,18 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="sub-header">Users</h2>
+    <h2 class="sub-header">Пользователя</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Is Active</th>
-                <th>Created</th>
-                <th>Updated</th>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Почта</th>
+                <th>Время создания</th>
+                <th>Время обновления</th>
             </tr>
             </thead>
             <tbody>
@@ -22,8 +20,6 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->role->name}}</td>
-                        <td>{{$user->is_active == 0? "Not Active" : "Active"}}</td>
                         <td>{{$user->created_at->diffForHumans()}}</td>
                         <td>{{$user->updated_at->diffForHumans()}}</td>
                     </tr>

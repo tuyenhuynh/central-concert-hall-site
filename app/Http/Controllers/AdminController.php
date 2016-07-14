@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//use App\Http\Requests\Request;
+
 use App\Http\Requests;
+
+use App\Concert;
+
+use App\User;
 
 class AdminController extends Controller
 {
+
+    protected $about_text;
 
     /**
      * Create a new controller instance.
@@ -26,7 +34,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = null ;
+        $users = User::all() ;
         return view("admin.index", compact('users'));
     }
 
@@ -37,11 +45,11 @@ class AdminController extends Controller
      */
 
     public function concerts(){
-        $concerts = null ;
+        $concerts = Concert::all();
         return view("admin.concerts", compact('concerts'));
     }
 
-    public function createConcert() {
+    public function createConcert(Request $request) {
 
     }
 
@@ -49,19 +57,52 @@ class AdminController extends Controller
 
     }
 
-    public function posters(){
+    public function updateConcert() {
+
 
     }
 
-    public function createPoster()
-    {
+    public function feedbacks() {
+        $feedbacks = null;
+        return view('admin.feedbacks', compact('feedbacks'));
+    }
+
+    public function feedback($id) {
+        $feedback = null;
+        return view('admin.feedback', compact('feedback'));
+    }
+
+    public function offices() {
+        $offices = null;
+        return view('admin.offices', compact('offices'));
+    }
+
+    public function office($id) {
+        $office = null;
+        return view('admin.office', compact('office'));
+    }
+
+    public function createOffice(Request $request) {
 
     }
 
-    public function editPoster(){
+    public function updateOffice(Request $request) {
 
     }
 
+    public function about() {
+        $about_text = file_get_contents('about.txt');
+        return view('admin.about', compact('about_text'));
+    }
+
+
+    public function updateAboutText(Request $request) {
+        $about_text = $request->input('text');
+        $file = fopen('about.txt', 'w');
+        fwrite($file, $about_text);
+        fclose($file);
+        return redirect('admin.about');
+    }
 
     /**
      * Store a newly created resource in storage.

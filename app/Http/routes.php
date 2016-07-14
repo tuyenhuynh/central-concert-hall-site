@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use App\User ;
+
 Route::get('/', function () {
     return view('index');
 });
@@ -39,11 +42,11 @@ Route::get('/admin/index', 'AdminController@index');
 
 Route::get('/admin/concerts', 'AdminController@concerts');
 
+Route::get('/admin/concerts/create', 'AdminController@createConcert');
+
+Route::get('/admin/concerts/{id}/edit', 'AdminController@editConcert');
+
 Route::get('/admin/concerts/{id}', 'AdminController@concert');
-
-Route::get('/admin/posters', 'AdminController@posters');
-
-Route::get('/admin/posters/{id}', 'AdminController@posters');
 
 Route::get('/admin/feedbacks', 'AdminController@feedbacks');
 
@@ -51,6 +54,10 @@ Route::get('/admin/feedbacks/{id}', 'AdminController@feedback');
 
 Route::get('/admin/offices/', 'AdminController@offices');
 
-Route::get('/admin/offices/id', 'AdminController@office');
+Route::get('/admin/offices/id/edit', 'AdminController@editOffice');
+
+Route::get('/admin/offices/create', 'AdminController@createOffice');
 
 Route::get('/admin/about', 'AdminController@about');
+
+Route::post('/admin/update_about', 'AdminController@updateAboutText');

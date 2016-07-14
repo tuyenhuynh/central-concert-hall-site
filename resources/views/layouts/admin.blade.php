@@ -69,12 +69,10 @@
                     <ul class="nav nav-sidebar">
                         <li><a href="/admin/schema_text">CEO текст</a></li>
                         <li><a href="/admin/feedbacks">Обратная связь</a></li>
-                        <li><a href="/admin/project_info">О проекте</a></li>
+                        <li><a href="/admin/about">О проекте</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <h1 class="page-header">Admin</h1>
-
                     @yield('content')
                 </div>
             </div>
