@@ -101,7 +101,7 @@ class AdminController extends Controller
         $file = fopen('about.txt', 'w');
         fwrite($file, $about_text);
         fclose($file);
-        return redirect('admin.about');
+        return redirect('/admin/about');
     }
 
     /**
