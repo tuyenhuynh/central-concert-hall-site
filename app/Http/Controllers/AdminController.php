@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use Illuminate\Http\Request;
-
-//use App\Http\Requests\Request;
 
 use App\Http\Requests;
 
@@ -63,7 +62,7 @@ class AdminController extends Controller
     }
 
     public function feedbacks() {
-        $feedbacks = null;
+        $feedbacks = Feedback::all();
         return view('admin.feedbacks', compact('feedbacks'));
     }
 

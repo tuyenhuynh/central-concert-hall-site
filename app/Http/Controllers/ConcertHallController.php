@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Feedback;
+
 class ConcertHallController extends Controller
 {
     /**
@@ -37,6 +39,15 @@ class ConcertHallController extends Controller
         $about_text = file_get_contents('about.txt');
         return view('contact', compact('about_text'));
     }
+
+    public function saveFeedback(Request $request){
+        $feedback = array('username' => $request->input('firstname')." ".$request->input('lastname'),
+                            'email'=> $request->input('email'),
+                            'content' =>$request->input('message'));
+        Feedback::create($feedback);
+        return redirect('/index');
+    }
+
 
     public function offices(){
         $offices = null ;

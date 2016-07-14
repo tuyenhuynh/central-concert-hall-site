@@ -13,17 +13,19 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Обратная связь</h3>
-                <div class="contact-form" style="margin-top:20px">
+
+                    {!! Form::open(array('action' => 'ConcertHallController@saveFeedback', 'method' => "post")) !!}
+                    <div class="contact-form" style="margin-top:20px">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input id="firstname" type="text" name="firstname" class="form-control" placeholder="Имя" required="required" data-error="Поле имя требуется.">
+                                {{ Form::text('firstname', null, ['class' => 'form-control', "placeholder"=>"Имя", "required"=>"required", "data-error" =>"Поле имя требуется."]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input id="lastname" type="text" name="lastname" class="form-control" placeholder="Фамилия" required="required" data-error="Поле фамилия требуется.">
+                                {{ Form::text('lastname', null, ['class' => 'form-control', "placeholder"=>"Фамилия", "required"=>"required", "data-error" =>"Поле имя требуется."]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -31,7 +33,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input id="email" type="text" name="email" class="form-control" placeholder="Email адрес" required="required" data-error="Поле email требуется">
+                                {{ Form::text('email', null, ['class' => 'form-control', "placeholder"=>"Email адрес", "required"=>"required", "data-error" =>"Поле имя требуется."]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -39,7 +41,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <textarea id="form_message" name="message" class="form-control" placeholder="Текст" rows="10" required="required" data-error="Поле текст требуется."></textarea>
+                                {{ Form::textarea('message', null, ['class' => 'form-control', 'rows' => 10, "placeholder"=>"Текст", "required"=>"required", "data-error" =>"Поле имя требуется."]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -47,7 +49,8 @@
                             <input type="submit" class="btn btn-success btn-send" value="Отправить">
                         </div>
                     </div>
-                </div>
+                    </div>
+                    {!! Form::close() !!}
             </div>
             <div class="col-md-6">
                 <h3>О проекте</h3>

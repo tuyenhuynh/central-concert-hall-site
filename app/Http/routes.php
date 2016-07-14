@@ -34,6 +34,8 @@ Route::get('/biletnye_kassy', 'ConcertHallController@offices');
 
 Route::get('/contact', 'ConcertHallController@contact');
 
+Route::post('/saveFeedback','ConcertHallController@saveFeedback');
+
 Route::get('/hall', 'ConcertHallController@hall');
 
 Route::get('/admin/', 'AdminController@index');
