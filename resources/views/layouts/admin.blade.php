@@ -7,7 +7,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Dashboard Template for Bootstrap</title>
+        <title>ЦКЗ Админский Панель</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -55,13 +55,10 @@
                 <div class="col-sm-3 col-md-2 sidebar">
 
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#">Админский панель <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="/admin/">Админский панель <span class="sr-only">(current)</span></a></li>
                         <li><a href="/admin/concerts">Концерты</a></li>
-                        <li><a href="/admin/concerts/create">Концерты</a></li>
-                        <li><a href="/admin/concerts/id/edit">Концерты</a></li>
-                        <li><a href="/admin/posters">Афиша</a></li>
-                        <li><a href="/admin/posters/create">Афиша</a></li>
-                        <li><a href="/admin/posters/id/update">Афиша</a></li>
+                        <li><a href="/admin/concerts/create">Создать концерт</a></li>
+                        <li><a href="/admin/concerts/id/edit">Редактировать концерт</a></li>
                     </ul>
                     <ul class="nav nav-sidebar">
                         <li><a href="/admin/offices">Кассы</a></li>

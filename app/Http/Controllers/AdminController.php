@@ -37,7 +37,8 @@ class AdminController extends Controller
      */
 
     public function concerts(){
-
+        $concerts = null ;
+        return view("admin.concerts", compact('concerts'));
     }
 
     public function createConcert() {
