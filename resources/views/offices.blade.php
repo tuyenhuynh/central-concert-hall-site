@@ -40,21 +40,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Ленина 41, Пегас Туристик</td>
-                <td>Ленина 51</td>
-                <td>с 8:00 до 19:00</td>
-            </tr>
-            <tr>
-                <td>Ленина 41, Пегас Туристик</td>
-                <td>Ленина 51</td>
-                <td>с 8:00 до 19:00</td>
-            </tr>
-            <tr>
-                <td>Ленина 41, Пегас Туристик</td>
-                <td>Ленина 51</td>
-                <td>с 8:00 до 19:00</td>
-            </tr>
+            @if($offices)
+                @foreach($offices as $office)
+                    <tr>
+                        <td>{{$office->name}}</td>
+                        <td>{{$office->address}}</td>
+                        <td>{{"с " . $office->open_at." до ".$office->close_at}}</td>
+                    </tr>
+                @endforeach
+            @endif
             </tbody>
         </table>
     </div>

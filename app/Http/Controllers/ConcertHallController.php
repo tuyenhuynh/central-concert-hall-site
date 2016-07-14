@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Office;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -50,7 +51,7 @@ class ConcertHallController extends Controller
 
 
     public function offices(){
-        $offices = null ;
+        $offices = Office::all() ;
         return view('offices', compact('offices'));
     }
 
