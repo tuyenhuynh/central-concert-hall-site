@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">ЦКЛ</a>
+                    <a class="navbar-brand" href="/index">ЦКЛ</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -57,10 +57,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav nav-justified">
-                            <li><a href="#">Афиша концертов</a></li>
-                            <li><a href="#">Кассы</a></li>
-                            <li><a href="#">Кассы</a></li>
-                            <li><a href="#">Контакты</a></li>
+                            <li><a href="/afisha">Афиша концертов</a></li>
+                            <li><a href="/biletnye_kassy">Кассы</a></li>
+                            <li><a href="/hall">Схема зала</a></li>
+                            <li><a href="/contact">Контакты</a></li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

@@ -6,52 +6,61 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class ConcertHallController extends Controller
+class AdminController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        return view('index');
+        $users = null ;
+        return view("admin.index", compact('users'));
     }
-
-    public function posters(){
-        $poster = null ;
-        return view('posters');
-    }
-
-    public function concert($concert_name, $date_time) {
-        $concert = null;
-        return view('concert', compact('concert'));
-    }
-
-    public function hall(){
-        return view('hall');
-    }
-
-    public function contact() {
-        return view('contact');
-    }
-
-    public function offices(){
-        $offices = null ;
-        return view('offices', compact('offices'));
-    }
-
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+
+    public function concerts(){
+
     }
+
+    public function createConcert() {
+
+    }
+
+    public function editConcert() {
+
+    }
+
+    public function posters(){
+
+    }
+
+    public function createPoster()
+    {
+
+    }
+
+    public function editPoster(){
+
+    }
+
 
     /**
      * Store a newly created resource in storage.

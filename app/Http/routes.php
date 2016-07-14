@@ -12,12 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('index');
+});
+
+Route::get('/home', function () {
+    return redirect('/');
 });
 
 Route::auth();
 
-Route::get('/home', 'ConcertHallController@index');
+Route::get('/index', 'ConcertHallController@index');
 
 Route::get('/afisha', 'ConcertHallController@posters');
 
@@ -28,4 +32,8 @@ Route::get('/biletnye_kassy', 'ConcertHallController@offices');
 Route::get('/contact', 'ConcertHallController@contact');
 
 Route::get('/hall', 'ConcertHallController@hall');
+
+Route::get('/admin/', 'AdminController@index');
+
+Route::get('/admin/index', 'AdminController@index');
 
