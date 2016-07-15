@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User ;
 
 Route::get('/', function () {
-    return view('index');
+    return redirect('/index');
 });
 
 Route::get('/home', function () {
@@ -28,7 +28,9 @@ Route::get('/index', 'ConcertHallController@index');
 
 Route::get('/afisha', 'ConcertHallController@posters');
 
-Route::get('/afisha/{concert_name}/{date_time}', 'ConcertHallController@concert');
+Route::get('/afisha/{concert_name}/{date_time}', 'ConcertHallController@poster');
+
+Route::get("/concerts/{id}", 'ConcertHallController@concert');
 
 Route::get('/biletnye_kassy', 'ConcertHallController@offices');
 
@@ -44,9 +46,13 @@ Route::get('/admin/index', 'AdminController@index');
 
 Route::get('/admin/concerts', 'AdminController@concerts');
 
-Route::get('/admin/concerts/create', 'AdminController@createConcert');
+Route::get('/admin/concerts/create', 'AdminController@getCreateConcert');
+
+Route::post('/admin/concerts/create', 'AdminController@postCreateConcert');
 
 Route::get('/admin/concerts/{id}/edit', 'AdminController@editConcert');
+
+Route::post('/admin/updateConcert', 'AdminController@updateConcert');
 
 Route::get('/admin/concerts/{id}', 'AdminController@concert');
 

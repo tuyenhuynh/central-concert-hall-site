@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Feedback;
 use App\Office;
+use App\Photo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,6 +12,8 @@ use App\Http\Requests;
 use App\Concert;
 
 use App\User;
+
+use DateTime;
 
 class AdminController extends Controller
 {
@@ -46,25 +49,52 @@ class AdminController extends Controller
 
     public function concerts(){
         $concerts = Concert::all();
-        return view("admin.concerts", compact('concerts'));
+        return view("admin.concerts.index", compact('concerts'));
     }
 
-    public function createConcert(Request $request) {
-
+    public function getCreateConcert() {
+        return view("admin.concerts.create");
     }
 
-    public function editConcert() {
+    public function postCreateConcert(Request $request) {
+        $input = $request->all();
+        $photo_file = $request->file('photo');
+        $thumb_photo_file = $request->file('thumb_photo');
+        if($photo_file) {
+            $name = time(). $photo_file ->getClientOriginalName();
+            $photo_file->move("images", $name);
+            $photo = Photo::create(['path' =>"/images/".$name]);
+            $input['photo_id'] = $photo->id;
+        }
 
+        if($thumb_photo_file) {
+            $name = time(). $thumb_photo_file ->getClientOriginalName();
+            $thumb_photo_file->move("images", $name);
+            $thumb_photo = Photo::create(['path' =>"/images/".$name]);
+            $input['thumb_photo_id'] = $thumb_photo->id;
+        }
+
+        $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
+
+        $input['date_time'] = $datetime;
+
+        $concert = Concert::create($input);
+
+        return redirect("/admin/concerts");
     }
 
-    public function updateConcert() {
+    public function editConcert($id) {
+        $concert = Concert::find($id);
+        return view("/admin/concerts/edit", compact('concert'));
+    }
 
-
+    public function updateConcert(Request $request) {
+        return "concert updated";
     }
 
     public function feedbacks() {
         $feedbacks = Feedback::all();
-        return view('admin.feedbacks', compact('feedbacks'));
+        return view('admin.feedbacks.index', compact('feedbacks'));
     }
 
     public function feedback($id) {
@@ -74,7 +104,7 @@ class AdminController extends Controller
 
     public function offices() {
         $offices = Office::all();
-        return view('admin.offices', compact('offices'));
+        return view('admin.offices.index', compact('offices'));
     }
 
     public function office($id) {

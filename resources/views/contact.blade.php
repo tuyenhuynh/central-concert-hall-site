@@ -54,11 +54,12 @@
             </div>
             <div class="col-md-6">
                 <h3>О проекте</h3>
-                <p>
-                    @if($about_text)
-                        {{$about_text}}
-                    @endif
-                </p>
+                @if($about_text)
+                    @foreach($about_text as $text)
+                        <p>{{$text}}</p>
+                        <br>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

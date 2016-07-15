@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+
 use App\Office;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 use App\Feedback;
+
+use  App\Concert;
 
 class ConcertHallController extends Controller
 {
@@ -19,16 +23,22 @@ class ConcertHallController extends Controller
 
     public function index()
     {
-        return view('index');
+        $concerts = Concert::all();
+        return view('index', compact('concerts'));
     }
 
     public function posters(){
-        $poster = null ;
-        return view('posters');
+        $concerts = Concert::all();
+        return view('posters', compact('concerts'));
     }
 
-    public function concert($concert_name, $date_time) {
+    public function poster($concert_name, $date_time) {
         $concert = null;
+        return view('concert', compact('concert'));
+    }
+
+    public function concert($id) {
+        $concert = Concert::find($id);
         return view('concert', compact('concert'));
     }
 
@@ -38,6 +48,15 @@ class ConcertHallController extends Controller
 
     public function contact() {
         $about_text = file_get_contents('about.txt');
+
+        $file = fopen("about.txt", "r");
+        $about_text  = array();
+        while(!feof($file)){
+            $line = fgets($file);
+            $about_text[] = $line;
+        }
+        fclose($file);
+
         return view('contact', compact('about_text'));
     }
 

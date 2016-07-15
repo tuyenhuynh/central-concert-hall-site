@@ -10,13 +10,15 @@
         <title>ЦКЗ Админский Панель</title>
 
         <!-- Bootstrap core CSS -->
-        {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">--}}
-        {{--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">--}}
-        {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">--}}
-        <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/admin/bootstrap-datepicker.css"/>
         <!-- Styles -->
         <link href="/css/admin/style.css" rel="stylesheet">
+        {{--JS--}}
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/admin/moment-with-locales.js"></script>
+        <script type="text/javascript" src="/js/admin/boostrap-datetimepicker.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -36,7 +38,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Админский Панель</a>
+                    <a class="navbar-brand" href="/admin/index">Админский Панель</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -56,15 +58,13 @@
                 <div class="col-sm-3 col-md-2 sidebar">
 
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="/admin/">Админский панель <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="/">ЦКЗ<span class="sr-only">(current)</span></a></li>
                         <li><a href="/admin/concerts">Концерты</a></li>
-                        <li><a href="/admin/concerts/create">Создать концерт</a></li>
-                        <li><a href="/admin/concerts/id/edit">Редактировать концерт</a></li>
+                        <li><a href="/admin/concerts/create">Добавить концерт</a></li>
                     </ul>
                     <ul class="nav nav-sidebar">
                         <li><a href="/admin/offices">Кассы</a></li>
                         <li><a href="/admin/offices/create">Добавить кассу</a></li>
-                        <li><a href="/admin/offices/id/edit">Редактировать кассу</a></li>
 
                     </ul>
                     <ul class="nav nav-sidebar">
@@ -82,9 +82,6 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>--}}
-        {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--}}
-        <script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>
