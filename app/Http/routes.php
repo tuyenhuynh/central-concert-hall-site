@@ -24,6 +24,8 @@ Route::get('/home', function () {
 
 Route::auth();
 
+Route::post('//ajax-get-concert-by-date', 'ConcertHallController@ajaxGetConcertByDate');
+
 Route::get('/index', 'ConcertHallController@index');
 
 Route::get('/afisha', 'ConcertHallController@posters');

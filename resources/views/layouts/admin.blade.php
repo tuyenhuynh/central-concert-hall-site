@@ -7,7 +7,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>ЦКЗ Админский Панель</title>
+        <title>ЦКЗ Админская Панель</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
@@ -38,7 +38,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/admin/index">Админский Панель</a>
+                    <a class="navbar-brand" href="/admin/index">Админская Панель</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">

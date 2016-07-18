@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 
 use App\Office;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,6 +13,12 @@ use App\Http\Requests;
 use App\Feedback;
 
 use  App\Concert;
+
+use Input;
+
+use Log;
+
+use App\Photo;
 
 class ConcertHallController extends Controller
 {
@@ -21,8 +28,25 @@ class ConcertHallController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
-    {
+
+
+    public function ajaxGetConcertByDate( Request $request) {
+        if($request->ajax()) {
+            $rawDate = $request->input('date');
+            $date  = DateTime::createFromFormat('D M d Y', $rawDate);
+            $concerts = Concert::where('date_time', 'like', $date->format('Y-m-d')."%")->get();
+
+            foreach( $concerts as $concert) {
+                $concert['image_path'] = Photo::find($concert->photo_id)->path;
+            }
+
+            return $concerts;
+        }else {
+            return "failed";
+        }
+    }
+
+    public function index(){
         $concerts = Concert::all();
         return view('index', compact('concerts'));
     }
