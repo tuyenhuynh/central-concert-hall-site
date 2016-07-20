@@ -2,8 +2,10 @@
 
 @section ('content')
     <h2 class="sub-header">Редактировать концерт</h2>
-    {!! Form::open(array('action' => 'AdminController@updateConcert', 'method' => "post", 'files' => true )) !!}
-    <div class="contact-form" style="margin-top:20px">
+    <a href={{"/admin/concerts/".$concert->id}}  role="button" class="btn btn-primary">Отображать</a>
+    {!! Form::open(array('action' => 'ConcertController@updateConcert', 'method' => "post", 'files' => true )) !!}
+    <div class="form-edit">
+        {{ Form::hidden('id', $concert->id)}}
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -45,8 +47,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    {{ Form::label('thumb_photo', 'Фото афиши') }}
-                    {{ Form::file('thumb_photo', null, ['class' => 'form-control'])}}
+                    {{ Form::label('audio', 'Аудио') }}
+                    {{ Form::file('audio', null, ['class' => 'form-control']) }}
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -54,13 +56,21 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    {{ Form::label('date', 'Аудио') }}
-                    {{ Form::file('date', null, ['class' => 'form-control']) }}
+                    {{ Form::label('audience_count', 'Количество зрителей') }}
+                    {{ Form::text('audience_count', $concert->audience_count, ['class' => 'form-control']) }}
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ Form::label('purchase_code', 'Код покупки')}}
+                    {{ Form::text('purchase_code', $concert->purchase_code, ['class' => 'form-control', "placeholder"=>"", "required"=>"required", "data-error" =>"Поле код покупки требуется"]) }}
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="form-group">
                 <div class="col-md-6">

@@ -73,14 +73,10 @@
                             </li>
                         @endforeach
                     @endif
-
                 </ul>
             </div>
-
         </div>
-
     </div>
-
 </div>
 <!-- /.container -->
 @endsection

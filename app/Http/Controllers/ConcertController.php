@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Concert;
 
+use DateTime;
+
 class ConcertController extends Controller
 {
     public function __construct()
@@ -37,28 +39,29 @@ class ConcertController extends Controller
     public function postCreateConcert(Request $request) {
         $input = $request->all();
         $photo_file = $request->file('photo');
-        $thumb_photo_file = $request->file('thumb_photo');
+        $audio_file = $request->file('audio');
+
         if($photo_file) {
             $name = time(). $photo_file ->getClientOriginalName();
             $photo_file->move("images", $name);
-            $photo = Photo::create(['path' =>"/images/".$name]);
-            $input['photo_id'] = $photo->id;
+            $photo_path= "/images/".$name;
+            $input['photo_path'] = $photo_path;
         }
 
-        if($thumb_photo_file) {
-            $name = time(). $thumb_photo_file ->getClientOriginalName();
-            $thumb_photo_file->move("images", $name);
-            $thumb_photo = Photo::create(['path' =>"/images/".$name]);
-            $input['thumb_photo_id'] = $thumb_photo->id;
+        if($audio_file) {
+            $name = time(). $audio_file ->getClientOriginalName();
+            $audio_file->move("audio", $name);
+            $audio_path= "/audio/".$name;
+            $input['audio_path'] = $audio_path;
         }
 
         $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
 
         $input['date_time'] = $datetime;
 
-        $concert = Concert::create($input);
+        $concert =  Concert::create($input);
 
-        return redirect("/admin/concerts");
+        return redirect("/admin/concerts/".$concert->id);
     }
 
     public function editConcert($id) {
@@ -67,7 +70,38 @@ class ConcertController extends Controller
     }
 
     public function updateConcert(Request $request) {
-        return "concert updated";
+
+        $input = $request->all();
+
+        $photo_file = $request->file('photo');
+        $audio_file = $request->file('audio');
+        $id = $input['id'];
+        $concert = Concert::find($id);
+        $concert->name = $input['name'];
+        $concert->description = $input['description'];
+        $concert->audience_count  = $input['audience_count'];
+        $concert->purchase_code = $input['purchase_code'];
+        $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
+        $concert['date_time'] = $datetime;
+
+        if($photo_file) {
+            $name = time(). $photo_file ->getClientOriginalName();
+            $photo_file->move("images", $name);
+            $photo_path= "/images/".$name;
+            $concert->photo_path = $photo_path;
+        }
+
+        if($audio_file) {
+            $name = time(). $audio_file ->getClientOriginalName();
+            $audio_file->move("audio", $name);
+            $audio_path= "/audio/".$name;
+            $concert->audio_path = $audio_path;
+        }
+
+        $concert->save();
+
+        return redirect("/admin/concerts/".$concert->id);
+
     }
 
 }

@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         {{ Form::label('name', 'Название')}}
-                        {{ Form::text('name', null, ['class' => 'form-control', "placeholder"=>"", "required"=>"required", "data-error" =>"Поле названиетребуется"]) }}
+                        {{ Form::text('name', null, ['class' => 'form-control', "placeholder"=>"", "required"=>"required", "data-error" =>"Поле название требуется"]) }}
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
@@ -45,8 +45,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        {{ Form::label('thumb_photo', 'Фото афиши') }}
-                        {{ Form::file('thumb_photo', null, ['class' => 'form-control'])}}
+                        {{ Form::label('audio', 'Аудио') }}
+                        {{ Form::file('audio', null, ['class' => 'form-control']) }}
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
@@ -54,13 +54,21 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        {{ Form::label('date', 'Аудио') }}
-                        {{ Form::file('date', null, ['class' => 'form-control']) }}
+                        {{ Form::label('audience_count', 'Количество зрителей') }}
+                        {{ Form::file('audience_count', null, ['class' => 'form-control']) }}
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ Form::label('purchase_code', 'Код покупки')}}
+                        {{ Form::text('purchase_code', null, ['class' => 'form-control', "placeholder"=>"", "required"=>"required", "data-error" =>"Поле код покупки требуется"]) }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
@@ -72,7 +80,6 @@
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
-
 
             <div class="row">
                 <div class="form-group">

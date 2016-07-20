@@ -10,10 +10,8 @@
                 <th>Название</th>
                 <th>Дата</th>
                 <th>Время</th>
-                <th>Описание</th>
                 <th>Кол-во зрителей</th>
-                <th>Аудио</th>
-                <th>Фото</th>
+                <th>Код покупки</th>
                 <th>Время создания</th>
                 <th>Время обновления</th>
                 <th></th>
@@ -29,10 +27,8 @@
                         <td>{{$concert->name}}</td>
                         <td>{{ DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('d.m.Y')}}</td>
                         <td>{{DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('H:i')}}</td>
-                        <td>{{$concert->description}}</td>
                         <td>{{$concert->audience_count}}</td>
-                        <td>{{$concert->audio_id}}</td>
-                        <td>{{$concert->photo_id}}</td>
+                        <td>{{$concert->purchase_code}}</td>
                         <td>{{$concert->created_at->diffForHumans()}}</td>
                         <td>{{$concert->updated_at->diffForHumans()}}</td>
                         <td>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Concert extends Model
 {
-    protected  $fillable=['name', 'date_time', 'description', 'audio_id', 'photo_id', 'audience_count'];
+    protected  $fillable=['name', 'date_time', 'description', 'audio_path', 'photo_path', 'audience_count', 'purchase_code'];
 
     public function photo() {
 

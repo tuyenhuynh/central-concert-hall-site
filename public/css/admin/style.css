@@ -7,6 +7,9 @@ body {
     padding-top: 50px;
 }
 
+.view-concert >div {
+    margin-top: 15px;
+}
 
 /*
  * Global add-ons
