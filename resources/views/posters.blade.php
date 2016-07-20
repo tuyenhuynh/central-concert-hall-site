@@ -22,7 +22,7 @@
                         <?php $datetime =DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time) ?>
                         <li>
                             <div class="row poster-item" style="border:1px solid #dddddd">
-                                <img src= {{$concert->photo->path}} alt="" style="float:left; max-height: 150px; max-width:200px">
+                                <img src= {{$concert->photo_path}} alt="" style="float:left; max-height: 150px; max-width:200px">
                                 <div class="concert-poster-detail">
                                     <div class="concert-poster-date-of-month" style="float:left; margin-left: 20px; margin-top:30px">
                                         <h2>{{$datetime->format('d')}}</h2>

@@ -27,11 +27,6 @@ class ConcertHallController extends Controller
             $rawDate = $request->input('date');
             $date  = DateTime::createFromFormat('D M d Y', $rawDate);
             $concerts = Concert::where('date_time', 'like', $date->format('Y-m-d')."%")->get();
-
-            foreach( $concerts as $concert) {
-                $concert['image_path'] = Photo::find($concert->photo_id)->path;
-            }
-
             return $concerts;
         }else {
             return "failed";

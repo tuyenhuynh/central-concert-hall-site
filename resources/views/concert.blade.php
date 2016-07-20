@@ -10,7 +10,7 @@
     <div class="container">
         @if($concert)
             <div class="row" class="">
-                <img class="concert-image" src={{$concert->photo->path}} alt="">
+                <img class="concert-image" src={{$concert->photo_path}} alt="">
             </div>
             <div class="row">
                 <div>

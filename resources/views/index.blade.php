@@ -51,7 +51,7 @@
                                 <div class="col-sm-4 col-lg-4 col-md-4">
                                     <div class="thumbnail">
                                         <div style="max-width: 350px;  height:200px;">
-                                            <img src={{$concert->photo->path}}  height=100%>
+                                            <img src={{$concert->photo_path}}  height=100%>
                                         </div>
                                         <div class="caption">
                                             <h4 class="pull-right"> {{$concert->audience_count . "+"}}</h4>
