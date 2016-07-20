@@ -2,7 +2,7 @@
 
 @section ('content')
     <h2 class="sub-header">Добавить концерт</h2>
-    {!! Form::open(array('action' => 'AdminController@postCreateConcert', 'method' => "post", 'files' => true )) !!}
+    {!! Form::open(array('action' => 'ConcertController@postCreateConcert', 'method' => "post", 'files' => true )) !!}
         <div class="contact-form" style="margin-top:20px">
             <div class="row">
                 <div class="col-md-6">

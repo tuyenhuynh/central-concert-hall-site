@@ -24,50 +24,49 @@ Route::get('/home', function () {
 
 Route::auth();
 
-Route::post('//ajax-get-concert-by-date', 'ConcertHallController@ajaxGetConcertByDate');
+Route::post('/ajax-get-concert-by-date', 'ConcertHallController@ajaxGetConcertsByDate');
 
 Route::get('/index', 'ConcertHallController@index');
+
+Route::get('/contact', 'ConcertHallController@contact');
+
+Route::get('/hall', 'ConcertHallController@hall');
 
 Route::get('/afisha', 'ConcertHallController@posters');
 
 Route::get('/afisha/{concert_name}/{date_time}', 'ConcertHallController@poster');
 
-Route::get("/concerts/{id}", 'ConcertHallController@concert');
-
 Route::get('/biletnye_kassy', 'ConcertHallController@offices');
-
-Route::get('/contact', 'ConcertHallController@contact');
 
 Route::post('/saveFeedback','ConcertHallController@saveFeedback');
 
-Route::get('/hall', 'ConcertHallController@hall');
-
 Route::get('/admin/', 'AdminController@index');
-
-Route::get('/admin/index', 'AdminController@index');
-
-Route::get('/admin/concerts', 'AdminController@concerts');
-
-Route::get('/admin/concerts/create', 'AdminController@getCreateConcert');
-
-Route::post('/admin/concerts/create', 'AdminController@postCreateConcert');
-
-Route::get('/admin/concerts/{id}/edit', 'AdminController@editConcert');
-
-Route::post('/admin/updateConcert', 'AdminController@updateConcert');
-
-Route::get('/admin/concerts/{id}', 'AdminController@concert');
-
-Route::get('/admin/feedbacks', 'AdminController@feedbacks');
-
-Route::get('/admin/feedbacks/{id}', 'AdminController@feedback');
-
-Route::get('/admin/offices/', 'AdminController@offices');
-
-Route::get('/admin/offices/id/edit', 'AdminController@editOffice');
-
-Route::get('/admin/offices/create', 'AdminController@createOffice');
 
 Route::get('/admin/about', 'AdminController@about');
 
 Route::post('/admin/update_about', 'AdminController@updateAboutText');
+
+Route::get('/admin/index', 'AdminController@index'); //review
+
+Route::get('/admin/concerts', 'ConcertController@concerts');
+
+Route::get('/admin/concerts/create', 'ConcertController@getCreateConcert');
+
+Route::post('/admin/concerts/create', 'ConcertController@postCreateConcert');
+
+Route::get('/admin/concerts/{id}/edit', 'ConcertController@editConcert');
+
+Route::post('/admin/updateConcert', 'ConcertController@updateConcert');
+
+Route::get('/admin/concerts/{id}', 'ConcertController@concert');
+
+Route::get('/admin/feedbacks', 'FeedbackController@feedbacks');
+
+Route::get('/admin/feedbacks/{id}', 'FeedbackController@feedback');
+
+Route::get('/admin/offices/', 'OfficeController@offices');
+
+Route::get('/admin/offices/id/edit', 'OfficeController@editOffice');
+
+Route::get('/admin/offices/create', 'OfficeController@createOffice');
+
