@@ -21,8 +21,13 @@ class FeedbackController extends Controller
     }
 
     public function feedback($id) {
-        $feedback = null;
-        return view('admin.feedback', compact('feedback'));
+        $feedback = Feedback::find($id);
+        return view('admin.feedbacks.show', compact('feedback'));
+    }
+
+    public function deleteFeedback($id) {
+        Feedback::destroy($id);
+        return redirect('/admin/feedbacks') ;
     }
 
 

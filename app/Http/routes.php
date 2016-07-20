@@ -68,6 +68,8 @@ Route::get('/admin/feedbacks', 'FeedbackController@feedbacks');
 
 Route::get('/admin/feedbacks/{id}', 'FeedbackController@feedback');
 
+Route::get('/admin/feedbacks/{id}/delete', 'FeedbackController@deleteFeedback');
+
 Route::get('/admin/offices/', 'OfficeController@offices');
 
 Route::get('/admin/offices/id/edit', 'OfficeController@editOffice');
