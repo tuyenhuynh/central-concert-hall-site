@@ -72,7 +72,13 @@ Route::get('/admin/feedbacks/{id}/delete', 'FeedbackController@deleteFeedback');
 
 Route::get('/admin/offices/', 'OfficeController@offices');
 
-Route::get('/admin/offices/id/edit', 'OfficeController@editOffice');
+Route::get('/admin/offices/{id}/edit', 'OfficeController@getUpdateOffice');
 
-Route::get('/admin/offices/create', 'OfficeController@createOffice');
+Route::post('/admin/offices/update', 'OfficeController@postUpdateOffice');
+
+Route::get('/admin/offices/{id}/delete', 'OfficeController@deleteOffice');
+
+Route::get('/admin/offices/create', 'OfficeController@getCreateOffice');
+
+Route::post('/admin/offices/create', 'OfficeController@postCreateOffice');
 

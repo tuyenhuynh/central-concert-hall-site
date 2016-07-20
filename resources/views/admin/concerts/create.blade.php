@@ -3,7 +3,7 @@
 @section ('content')
     <h2 class="sub-header">Добавить концерт</h2>
     {!! Form::open(array('action' => 'ConcertController@postCreateConcert', 'method' => "post", 'files' => true )) !!}
-        <div class="contact-form" style="margin-top:20px">
+        <div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-6">
-                        {{Form::submit('Отправить', ['class' =>'btn btn-success btn-send'])}}
+                        {{Form::submit('Добавить', ['class' =>'btn btn-success btn-send'])}}
                     </div>
                 </div>
             </div>

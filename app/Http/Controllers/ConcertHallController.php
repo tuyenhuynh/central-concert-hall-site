@@ -22,13 +22,6 @@ use App\Photo;
 
 class ConcertHallController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
     public function ajaxGetConcertByDate( Request $request) {
         if($request->ajax()) {
             $rawDate = $request->input('date');
