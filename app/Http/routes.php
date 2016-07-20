@@ -54,6 +54,8 @@ Route::get('/admin/concerts/create', 'ConcertController@getCreateConcert');
 
 Route::post('/admin/concerts/create', 'ConcertController@postCreateConcert');
 
+Route::get('/admin/concerts/{id}', 'ConcertController@concert');
+
 Route::get('/admin/concerts/{id}/edit', 'ConcertController@editConcert');
 
 Route::get('/admin/concerts/{id}/delete', 'ConcertController@deleteConcert');

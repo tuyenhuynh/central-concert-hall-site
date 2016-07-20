@@ -26,7 +26,7 @@
                 @foreach($concerts as $concert)
                     <tr>
                         <td>{{$concert->id}}</td>
-                        <td><a href ={{"/admin/concerts/".$concert->id."/edit"}}>{{$concert->name}}</a></td>
+                        <td>{{$concert->name}}</td>
                         <td>{{ DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('d.m.Y')}}</td>
                         <td>{{DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('H:i')}}</td>
                         <td>{{$concert->description}}</td>

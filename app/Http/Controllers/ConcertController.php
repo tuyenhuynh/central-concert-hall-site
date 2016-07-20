@@ -17,7 +17,7 @@ class ConcertController extends Controller
 
     public function concert($id) {
         $concert = Concert::find($id);
-        return view('concert', compact('concert'));
+        return view('admin.concerts.show', compact('concert'));
     }
 
     public function concerts(){
@@ -63,7 +63,7 @@ class ConcertController extends Controller
 
     public function editConcert($id) {
         $concert = Concert::find($id);
-        return view("/admin/concerts/edit", compact('concert'));
+        return view("/admin.concerts.edit", compact('concert'));
     }
 
     public function updateConcert(Request $request) {
