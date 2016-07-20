@@ -29,6 +29,11 @@ class ConcertController extends Controller
         return view("admin.concerts.create");
     }
 
+    public function deleteConcert($id) {
+        Concert::destroy($id);
+        return redirect ("/admin/concerts");
+    }
+
     public function postCreateConcert(Request $request) {
         $input = $request->all();
         $photo_file = $request->file('photo');

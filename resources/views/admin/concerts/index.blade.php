@@ -42,8 +42,29 @@
                             <a href ={{"/admin/concerts/".$concert->id."/edit"}}><span class="fa fa-edit"></span></a>
                         </td>
                         <td>
-                            <a href={{"/admin/concerts/".$concert->id."/delete"}}><span class="fa fa-power-off"></span></a>
+                            <!-- Button trigger modal -->
+                            <a  href="" data-toggle="modal" data-target="#myModal">
+                                <span class="fa fa-power-off"></span>
+                            </a>
                         </td>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel"></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Вы хотите удалить концерт ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                        <a href={{"/admin/concerts/".$concert->id."/delete"}} role="button" class="btn btn-primary" >Удалить</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                 @endforeach
             @endif
