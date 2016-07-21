@@ -51,10 +51,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-right">
-                        <li class="phone">+7 (84 42) 36 12 73</li>
-                        <li><button class="btn btn-primary">Купить билет</button></li>
+                        <li class="phone">{{$information->phone_number}}</li>
+                        <li><a href='{{$information->default_purchase_code}}' class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" id="default-purchase-button" role="button">Купить билет</a></li>
                     </ul>
-
                 </div>
                 <div class="container">
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -98,10 +97,6 @@
 
         </div>
         <!-- /.container -->
-
-        <!-- JavaScripts -->
-        {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>--}}
-        {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--}}
 
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="/js/bootstrap.min.js"></script>

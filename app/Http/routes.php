@@ -82,3 +82,16 @@ Route::get('/admin/offices/create', 'OfficeController@getCreateOffice');
 
 Route::post('/admin/offices/create', 'OfficeController@postCreateOffice');
 
+Route::post('/admin/update_phone_number', 'AdminController@ajaxUpdatePhoneNumber');
+
+Route::post('/admin/update_default_purchase_code', 'AdminController@ajaxUpdateDefaultPurchaseCode');
+
+Route::post('/admin/update_company_info', 'AdminController@ajaxUpdateCompanyInfo');
+
+Route::post('/admin/update_hall_schema', 'AdminController@updateHallSchema');
+
+Route::post('/admin/update_hall_text', 'AdminController@ajaxUpdateHallText');
+
+Route::post('/admin/update_ceo_text', 'AdminController@ajaxUpdateCeoText');
+
+Route::post('/admin/update_office_location', 'AdminController@ajaxUpdateOfficeLocation');

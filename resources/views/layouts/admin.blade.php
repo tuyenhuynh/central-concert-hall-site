@@ -7,6 +7,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>ЦКЗ Админская Панель</title>
 
         <!-- Bootstrap core CSS -->
@@ -68,9 +69,7 @@
 
                     </ul>
                     <ul class="nav nav-sidebar">
-                        <li><a href="/admin/schema_text">CEO текст</a></li>
                         <li><a href="/admin/feedbacks">Обратная связь</a></li>
-                        <li><a href="/admin/about">О проекте</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -83,5 +82,6 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/admin/admin.js"></script>
     </body>
 </html>

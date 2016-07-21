@@ -9,6 +9,7 @@
 
     <div class="container">
         @if($concert)
+            <?php $datetime = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time) ?>
             <div class="row" class="">
                 <img class="concert-image" src={{$concert->photo_path}} alt="">
             </div>
@@ -42,12 +43,32 @@
                 </div>
             </div>
             <div class="row buy-ticket text-center" style="margin-top:30px">
-                <a href="#" class="btn btn-success" role="button">Купить билет</a>
+                <a class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" role="button" href='{{$concert->purchase_code}}' style="margin-bottom: 10px">Купить билет</a>
             </div>
             <div class="row conert-text" style="margin-top: 20px">
-                CEO Tекст
+                @if($information)
+                    {{$information->ceo_text}}
+                @endif
             </div>
         @endif
-
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body" style="height: 500px">
+                        <iframe src="" style="zoom:0.4" width="100%" height="100%" frameborder="0"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 @endsection()

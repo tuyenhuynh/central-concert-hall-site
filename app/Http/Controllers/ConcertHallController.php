@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Information;
 use DateTime;
 
 use App\Office;
@@ -22,11 +23,16 @@ use App\Photo;
 
 class ConcertHallController extends Controller
 {
-    public function ajaxGetConcertByDate( Request $request) {
+    public function ajaxGetConcertsByDate( Request $request) {
         if($request->ajax()) {
             $rawDate = $request->input('date');
             $date  = DateTime::createFromFormat('D M d Y', $rawDate);
             $concerts = Concert::where('date_time', 'like', $date->format('Y-m-d')."%")->get();
+            foreach ($concerts as $concert) {
+                $concert['link'] = "/afisha/" . $concert->name ."/". $date->format('dmY');
+                $concert['datetime'] = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('d/m/Y, H:i');
+            }
+
             return $concerts;
         }else {
             return "failed";
@@ -35,41 +41,40 @@ class ConcertHallController extends Controller
 
     public function index(){
         $concerts = Concert::all();
-        return view('index', compact('concerts'));
+        $information = Information::find(1);
+        return view('index', compact(['concerts', 'information']));
     }
-
 
     public function posters(){
         $concerts = Concert::all();
-        return view('posters', compact('concerts'));
+        $information = Information::find(1);
+        return view('posters', compact(['concerts', 'information']));
     }
 
     public function poster($concert_name, $date_time) {
-        $concert = null;
-        return view('concert', compact('concert'));
+        $concert_date_time = DateTime::createFromFormat('dmY', $date_time)->format('Y-m-d');
+        $concert = Concert::where('name', $concert_name)
+                        ->where('date_time', 'like', $concert_date_time."%")->first();
+
+        $information = Information::find(1);
+        return view('concert', compact(['concert', 'information']));
     }
 
     public function hall(){
-        return view('hall');
+        $information = Information::find(1);
+        return view('hall', compact('information'));
     }
 
     public function contact() {
-        $about_text = file_get_contents('about.txt');
 
-        $file = fopen("about.txt", "r");
-        $about_text  = array();
-        while(!feof($file)){
-            $line = fgets($file);
-            $about_text[] = $line;
-        }
-        fclose($file);
-
-        return view('contact', compact('about_text'));
+        $information = Information::find(1);
+        return view('contact', compact('information'));
     }
 
     public function offices(){
-        $offices = Office::all() ;
-        return view('offices', compact('offices'));
+        $offices = Office::all();
+        $information = Information::find(1);
+        return view('offices', compact(['offices', 'information']));
     }
 
     public function saveFeedback(Request $request){

@@ -22,8 +22,6 @@ class CreateInformationTable extends Migration
             $table->string('office_location');
             $table->timestamps();
         });
-        
-        
     }
 
     /**

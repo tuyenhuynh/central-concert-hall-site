@@ -54,11 +54,8 @@
             </div>
             <div class="col-md-6">
                 <h3>О проекте</h3>
-                @if($about_text)
-                    @foreach($about_text as $text)
-                        <p>{{$text}}</p>
-                        <br>
-                    @endforeach
+                @if($information)
+                    {{$information->company_info}}
                 @endif
             </div>
         </div>
