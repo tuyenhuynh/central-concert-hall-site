@@ -51,10 +51,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-right">
-                        @if($information)
-                            <li class="phone">{{$information->phone_number}}</li>
-                            <li><a href='{{$information->default_purchase_code}}' class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" id="default-purchase-button" role="button">Купить билет</a></li>
-                        @endif
+                        {{--@if($information)--}}
+                            {{--<li class="phone">{{$information->phone_number}}</li>--}}
+                            {{--<li><a href='{{$information->default_purchase_code}}' class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" id="default-purchase-button" role="button">Купить билет</a></li>--}}
+                        {{--@endif--}}
                     </ul>
                 </div>
                 <div class="container">
