@@ -6,7 +6,44 @@
 
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    background-color: #F4F4F4;
+
+
 }
+
+
+a:hover, a:focus{
+    text-decoration: none;
+    color:#2ebaae !important;
+}
+
+
+.links ul li {
+    display: inline-block;
+    line-height: 3em;
+    margin-left: 3em;
+
+}
+
+
+.links ul li:first-child{
+    border-left: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+
+}
+
+.active-link{
+    color: #2ebaae !important;
+}
+
+.links ul li a{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 16px;
+    color: #fff;
+}
+
 
 .inline{
     float:left;
@@ -56,7 +93,7 @@ li.date {
 }
 
 .poster-date{
-    margin-top:20px;
+    margin-top:5px;
     margin-bottom: 50px;
 }
 

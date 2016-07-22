@@ -29,8 +29,8 @@
                                         <h2>{{$datetime->format('d')}}</h2>
                                     </div>
                                     <div class="concert-poster-date-of-week" style="float:left; margin-left:20px; margin-top:30px">
-                                        <h5 style="color:#d17581">{{$datetime->format('D')}}</h5>
-                                        <h4>{{$datetime->format('m Y')}}</h4>
+                                        <h5 style="color:#d17581">{{$concert->day_of_week}}</h5>
+                                        <h4>{{strtoupper($concert->month) ." ". $datetime->format('Y')}}</h4>
                                     </div>
                                     <div class="concert-poster-name" style="float:left; margin-left:40px; margin-top:35px">
                                         <h3><a href='{{"/afisha/".$concert->name."/".$datetime->format("dmY")}}'>{{$concert->name}}</a></h3>

@@ -23,6 +23,38 @@ use App\Photo;
 
 class ConcertHallController extends Controller
 {
+
+
+    private $days = Array('Mon'=>'Понидельник', 'Tue'=>'Вторник', 'Wed'=>'Среду', 'Thu'=>'Пятницу', 'Fri'=>'Четверг', 'Sat'=>'Субботу', 'Sun'=>'Воскресенье');
+
+    private $months = Array('01'=>'янавря',
+                            '02'=>'февраля',
+                            '03'=>'марта',
+                            '04'=>'апреля',
+                            '05'=>'мая',
+                            '06'=>'июня',
+                            '07'=>'июля',
+                            '08'=>'августа',
+                            '09'=>'сентября',
+                            '10'=>'октября',
+                            '11'=>'ноября',
+                            '12'=>'декабря',
+                            );
+
+    private $monthsUppercase = Array('01'=>'ЯНВАРЯ',
+        '02'=>'ФЕВРАЛЯ',
+        '03'=>'МАРТА',
+        '04'=>'АПРЕЛЯ',
+        '05'=>'МАЯ',
+        '06'=>'ИЮНЯ',
+        '07'=>'ИЮЛЯ',
+        '08'=>'АВГУТСА',
+        '09'=>'СЕНТЯБРЯ',
+        '10'=>'ОКТЯБРЯ',
+        '11'=>'НОЯБРЯ',
+        '12'=>'ДЕКАБРЯ',
+    );
+
     public function ajaxGetConcertsByDate( Request $request) {
         if($request->ajax()) {
             $rawDate = $request->input('date');
@@ -31,6 +63,7 @@ class ConcertHallController extends Controller
             foreach ($concerts as $concert) {
                 $concert['link'] = "/afisha/" . $concert->name ."/". $date->format('dmY');
                 $concert['datetime'] = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('d/m/Y, H:i');
+
             }
 
             return $concerts;
@@ -42,12 +75,32 @@ class ConcertHallController extends Controller
     public function index(){
         $concerts = Concert::all();
         $information = Information::find(1);
+        foreach($concerts as $concert){
+            $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
+            $concert['displayed_date_time'] = $this->formatDateTime($date_time);
+        }
         return view('index', compact(['concerts', 'information']));
     }
+
+    private function formatDateTime($date_time) {
+        $result = $date_time->format('d '). $this->months[$date_time->format('m')] .$date_time->format(' h:i');
+        return $result;
+    }
+
+    private function convertDateOfWeekToRussian($date_time) {
+        return $this->days[$date_time->format('D')];
+    }
+
+
 
     public function posters(){
         $concerts = Concert::all();
         $information = Information::find(1);
+        foreach($concerts as $concert) {
+            $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
+            $concert['month'] = $this->monthsUppercase[$date_time->format('m')];
+            $concert['day_of_week'] = $this->days[$date_time->format('D')];
+        }
         return view('posters', compact(['concerts', 'information']));
     }
 

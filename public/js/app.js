@@ -8,7 +8,13 @@ $.ajaxSetup({
     }
 });
 
-var currentIndex = 0;
+$('ul#nav li a').click(function(){
+    $('ul#nav li a').removeClass('active-link');
+    console.log('clicked');
+    $(this).addClass('active-link');
+});
+
+var currentIndex = -1;
 
 var weekday = new Array(7);
 weekday[0]=  "ВС";
@@ -29,14 +35,17 @@ function updateCalendar() {
         y = startDate.getYear() + 1900;
 
     for (var i = 0 ; i < count ; ++i) {
+
         var date = new Date(y,m, d + i);
         var currentElement = dateList.eq(i);
         var currentDay = date.getDay();
         var button = currentElement.children('button');
         button.html (weekday[currentDay] + "<br>" +  date.getDate());
-
+        button.removeClass('btn-default').removeClass('btn-grey').removeClass('btn-success');
         if(currentDay == 6 || currentDay == 0) {
-            button.removeClass('btn-default').addClass('btn-grey');
+            button.addClass('btn-grey');
+        }else {
+            button.addClass('btn-default');
         }
     }
 
@@ -56,6 +65,7 @@ $('ul#dates li button').click(function(e){
     prevSelectedButton.removeClass('btn-success');
 
     if(currentIndex == 0 || currentIndex == 6) {
+        console.log(currentIndex + ' removed');
         prevSelectedButton.addClass('btn-grey');
     }else {
         prevSelectedButton.addClass('btn-default');
@@ -65,7 +75,8 @@ $('ul#dates li button').click(function(e){
 
     var selectedDate = new Date(startDate.getYear() +1900, startDate.getMonth(), startDate.getDate() + index);
 
-    $(this).addClass('btn-success');
+    $(this).removeClass('btn-default').removeClass('btn-grey').addClass('btn-success');
+
     console.log(selectedDate.toDateString());
     $.ajax({
         url:'/ajax-get-concert-by-date',
@@ -108,11 +119,13 @@ $('ul#dates li button').click(function(e){
 });
 
 $('#next').click(function() {
+    currentIndex = -1;
     startDate.setDate(startDate.getDate() + 1);
     updateCalendar();
 });
 
 $('#prev').click(function() {
+    currentIndex = -1;
     startDate.setDate(startDate.getDate() -1);
     updateCalendar();
 });
@@ -121,5 +134,4 @@ $('a.btn-purchase').click(function(e){
     e.preventDefault();
     var url = $(this).attr('href');
     $('#myModal iframe').attr('src', url );
-    //console.log();
 });

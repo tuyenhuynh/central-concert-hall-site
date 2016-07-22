@@ -35,48 +35,70 @@
 
     <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom" role="navigation">
-            <div class="container ">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/index">ЦКЗ</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-right">
+
+    <header id="header" style="position:fixed; top:0px; left: 0;  display: block; width: 100%; z-index: 10000" >
+        <div id="top-header" style="height: 56px;background-color:#2DA0DF; width: 100%; display: block; "  >
+            <div class='left-top-header' style="margin-left:30px; position: absolute; top: 0px">
+                <h1 style="line-height: 50px; margin-top: 0"><a href="" style="color:#000; font-size:30px">ЦКЗ</a></h1>
+            </div>
+            <div class="right-top-header" style="position:absolute; top:0; right:48px; line-height: 50px">
+                <h1 style="float:left; ; font-size:15px; font-weight:400 ; color:#fff">+7 (937) 709 6262</h1>
+                <button class="btn btn-success" style="margin-left:20px; font-size: 15px; color:#fff">Купить билет</button>
+            </div>
+        </div><!--
+        <h1><a href="#">Future Imperfect</a></h1> -->
+        <nav class="links" style="text-align:center; width: 100%; height: 48px; background-color: #000">
+            <ul id="nav">
+                <li><a href="/" class="active-link">Главная</a></li>
+                <li><a href="/afisha" id="test">Афиша концертов</a></li>
+                <li><a href="/biletnye_kassy">Кассы</a></li>
+                <li><a href="/hall">Схема зала</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+        {{--<!-- Navigation -->--}}
+        {{--<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom" role="navigation">--}}
+            {{--<div class="container ">--}}
+                {{--<!-- Brand and toggle get grouped for better mobile display -->--}}
+                {{--<div class="navbar-header">--}}
+                    {{--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">--}}
+                        {{--<span class="sr-only">Toggle navigation</span>--}}
+                        {{--<span class="icon-bar"></span>--}}
+                        {{--<span class="icon-bar"></span>--}}
+                        {{--<span class="icon-bar"></span>--}}
+                    {{--</button>--}}
+                    {{--<a class="navbar-brand" href="/index">ЦКЗ</a>--}}
+                {{--</div>--}}
+                {{--<!-- Collect the nav links, forms, and other content for toggling -->--}}
+                {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
+                    {{--<ul class="nav navbar-right">--}}
                         {{--@if($information)--}}
                             {{--<li class="phone">{{$information->phone_number}}</li>--}}
                             {{--<li><a href='{{$information->default_purchase_code}}' class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" id="default-purchase-button" role="button">Купить билет</a></li>--}}
                         {{--@endif--}}
-                    </ul>
-                </div>
-                <div class="container">
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav nav-justified">
-                            <li><a href="/afisha">Афиша концертов</a></li>
-                            <li><a href="/biletnye_kassy">Кассы</a></li>
-                            <li><a href="/hall">Схема зала</a></li>
-                            <li><a href="/contact">Контакты</a></li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
+                    {{--</ul>--}}
+                {{--</div>--}}
+                {{--<div class="container">--}}
+                    {{--<!-- Collect the nav links, forms, and other content for toggling -->--}}
+                    {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
+                        {{--<ul class="nav nav-justified">--}}
+                            {{--<li><a href="/afisha">Афиша концертов</a></li>--}}
+                            {{--<li><a href="/biletnye_kassy">Кассы</a></li>--}}
+                            {{--<li><a href="/hall">Схема зала</a></li>--}}
+                            {{--<li><a href="/contact">Контакты</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.navbar-collapse -->--}}
+                {{--</div>--}}
+                {{--<!-- /.navbar-collapse -->--}}
+            {{--</div>--}}
+            {{--<!-- /.container -->--}}
+        {{--</nav>--}}
 
         @yield ('content')
 
-        <div class="container">
+        <div class="container" style="bottom:50px">
 
             <hr>
 
@@ -103,6 +125,7 @@
         <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
+
     </body>
 
 </html>

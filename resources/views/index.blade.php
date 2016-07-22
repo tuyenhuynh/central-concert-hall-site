@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="padding"></div>
-    <div class="row poster-header">
-        <h3>Aфиша ЦКЗ на Сентябрь</h3>
+    <div class="row" style="text-align:center; line-height: 2em;">
+        <h4 style="font-weight: 400;">Aфиша ЦКЗ на Сентябрь</h4>
     </div>
     <div></div>
 </div>
@@ -13,7 +13,7 @@
     <div class="row" style="float: none; margin: 0 auto;" >
         <div class="col-md-12 col-xs-12 col-centered">
             <a class="left" style="margin-top:30px; margin-left:30px" id="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="glyphicon glyphicon-chevron-left" style="position:relative; top: 35px;"></span>
             </a>
             <ul id="dates">
                 <li class="date"><button class= "btn btn-default" >ПН<br>11</button></li>
@@ -56,14 +56,14 @@
                                         </div>
                                         <div class="caption">
                                             <h4 class="pull-right"> {{$concert->audience_count . "+"}}</h4>
-                                            <h4><a href='{{"/afisha/".$concert->name."/".$datetime->format('dmY')}}'>{{$concert->name}}</a>
+                                            <h4 ><a href='{{"/afisha/".$concert->name."/".$datetime->format('dmY')}}'>{{$concert->name}}</a>
                                             </h4>
                                             <p>{{$concert->description}}</p>
                                         </div>
                                         <div class="concert-time">
                                             <p>
                                                 <span class="glyphicon glyphicon-time"></span>
-                                                {{DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('d/m/Y, H:i')}}
+                                                {{$concert->displayed_date_time}}
                                             </p>
                                         </div>
                                         <div class="text-center center-block">
