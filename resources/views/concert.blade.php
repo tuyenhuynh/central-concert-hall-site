@@ -1,10 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="padding"></div>
-        <div class="row path">
-            <h5>Главная > Афиша концертов > Lana Del Ray/15072016</h5>
-        </div>
+        {!! Breadcrumbs::render('concert', $concert) !!}
     </div>
 
     <div class="container">

@@ -2,10 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="padding"></div>
-        <div class="row path">
-            <h5>Главная > Схема зала</h5>
-        </div>
+        {!! Breadcrumbs::render('hall') !!}
     </div>
 
 

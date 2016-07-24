@@ -1,10 +1,7 @@
 @extends('layouts.app')
 @section('content')
+    {!! Breadcrumbs::render('posters') !!}
     <div class="container">
-        <div class="padding"></div>
-        <div class="row path">
-            <h5>Главная > Афиша концертов</h5>
-        </div>
         <div class="row poster-header">
             <h3>Aфиша концертов ЦКЗ</h3>
         </div>
@@ -30,10 +27,10 @@
                                     </div>
                                     <div class="concert-poster-date-of-week" style="float:left; margin-left:20px; margin-top:30px">
                                         <h5 style="color:#d17581">{{$concert->day_of_week}}</h5>
-                                        <h4>{{strtoupper($concert->month) ." ". $datetime->format('Y')}}</h4>
+                                        <h4 style="text-transform: uppercase">{{strtoupper($concert->month) ." ". $datetime->format('Y')}}</h4>
                                     </div>
                                     <div class="concert-poster-name" style="float:left; margin-left:40px; margin-top:35px">
-                                        <h3><a href='{{"/afisha/".$concert->name."/".$datetime->format("dmY")}}'>{{$concert->name}}</a></h3>
+                                        <h3><a href='{{"/afisha/".$concert->name."/".$datetime->format("dmY")}}' >{{$concert->name}}</a></h3>
                                     </div>
                                     <div class="concert-poster-buy-ticket" style="float:right; margin-right:20px; margin-top:50px">
                                         <a href='{{$concert->purchase_code}}' data-toggle="modal" data-target="#myModal" class="btn btn-success btn-purchase" role="button">Билеты</a>

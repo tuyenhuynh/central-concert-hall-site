@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="padding"></div>
-    <div class="row" style="text-align:center; line-height: 2em;">
-        <h4 style="font-weight: 400;">Aфиша ЦКЗ на Сентябрь</h4>
+    <div class="row current-month">
+        <h4 style="font-weight: 400;" class="current-month"></h4>
     </div>
     <div></div>
 </div>
@@ -12,8 +12,8 @@
 <div class="container poster-date">
     <div class="row" style="float: none; margin: 0 auto;" >
         <div class="col-md-12 col-xs-12 col-centered">
-            <a class="left" style="margin-top:30px; margin-left:30px" id="prev">
-                <span class="glyphicon glyphicon-chevron-left" style="position:relative; top: 35px;"></span>
+            <a class="left" id="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <ul id="dates">
                 <li class="date"><button class= "btn btn-default" >ПН<br>11</button></li>
@@ -47,7 +47,6 @@
                 <ul id="concerts">
                     @if($concerts)
                         @foreach($concerts as $concert)
-                            <?php $datetime = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time) ?>
                             <li>
                                 <div class="col-sm-4 col-lg-4 col-md-4">
                                     <div class="thumbnail">
@@ -55,19 +54,27 @@
                                             <img src={{$concert->photo_path}}  height=100%>
                                         </div>
                                         <div class="caption">
-                                            <h4 class="pull-right"> {{$concert->audience_count . "+"}}</h4>
-                                            <h4 ><a href='{{"/afisha/".$concert->name."/".$datetime->format('dmY')}}'>{{$concert->name}}</a>
-                                            </h4>
+                                            <div  style="display: inline; line-height: 2em">
+                                                {{--"--}}
+                                                <div style="float:left;">
+                                                    <a href='{{$concert->link}}'>{{$concert->name}}</a>
+                                                </div>
+                                                <div>
+                                                    {{$concert->lim_age . "+"}}
+                                                </div>
+                                            </div>
+                                            {{--<span><h4 ></h4><div style="display: inline-block"></div></span>--}}
+
                                             <p>{{$concert->description}}</p>
                                         </div>
                                         <div class="concert-time">
                                             <p>
-                                                <span class="glyphicon glyphicon-time"></span>
+                                                <span class="glyphicon glyphicon-time" style="margin-right: 10px"></span>
                                                 {{$concert->displayed_date_time}}
                                             </p>
                                         </div>
                                         <div class="text-center center-block">
-                                            <a class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" role="button" href='{{$concert->purchase_code}}' style="margin-bottom: 10px">Купить билет</a>
+                                            <a class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" role="button" href='{{$concert->purchase_code}}' style="margin-bottom: 20px">Купить билет</a>
                                         </div>
                                     </div>
                                 </div>

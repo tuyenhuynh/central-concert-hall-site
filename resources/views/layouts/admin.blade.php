@@ -41,11 +41,11 @@
                     </button>
                     <a class="navbar-brand" href="/admin/index">Админская Панель</a>
                 </div>
-                {{--<div id="navbar" class="navbar-collapse collapse">--}}
-                    {{--<ul class="nav navbar-nav navbar-right">--}}
-                        {{--<li><a href="/logout">Выход</a></li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/logout">Выход</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
@@ -61,7 +61,10 @@
                     <ul class="nav nav-sidebar">
                         <li><a href="/admin/offices">Кассы</a></li>
                         <li><a href="/admin/offices/create">Добавить кассу</a></li>
-
+                    </ul>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="/admin/users">Пользователь</a></li>
+                        <li><a href="/admin/users/create">Добавить пользователя</a></li>
                     </ul>
                     <ul class="nav nav-sidebar">
                         <li><a href="/admin/feedbacks">Обратная связь</a></li>
@@ -78,5 +81,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/js/admin/admin.js"></script>
+        <script type="text/javascript" src='/js/validator.min.js'></script>
     </body>
 </html>

@@ -7,6 +7,36 @@ body {
     padding-top: 50px;
 }
 
+.form-remove {
+    float: right;
+    margin-left: 20px;
+}
+
+label{
+    line-height:3em;
+    text-align: right;
+}
+
+.modal-center {
+    top:100px;
+}
+
+.link-disable {
+    display: none;
+}
+
+td button {
+    width:30px;
+}
+
+.link-remove {
+    display:none;
+}
+
+td a span {
+    color: #000;
+}
+
 .view-concert >div {
     margin-top: 15px;
 }
