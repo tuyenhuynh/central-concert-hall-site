@@ -17,46 +17,105 @@ class OfficeController extends Controller
         $this->middleware('auth');
     }
 
-    public function offices() {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $offices = Office::all();
         return view('admin.offices.index', compact('offices'));
     }
 
-    public function getCreateOffice(){
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         return view('admin.offices.create');
     }
 
-    public function postCreateOffice(Request $request) {
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $input = $request->all();
         $office = new Office;
         $office->name = $input['name'];
         $office->address= $input['address'];
-        $office->time_open = $input['time_open']; //DateTime::createFromFormat('', $input['time_open']);
-        $office->time_close = $input['time_close']; //DateTime::createFromFormat('', $input['time_close']);
+        $office->time_open = $input['time_open'];
+        $office->time_close = $input['time_close'];
+        $office->latitude = $input['latitude'];
+        $office->longtitude = $input['longtitude'];
+        $office->is_active = 1;
         $office->save();
         return redirect ('/admin/offices');
     }
 
-    public function getUpdateOffice($id) {
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return "Method not support";
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
         $office = Office::find($id);
         return view('admin.offices.edit', compact('office'));
     }
 
-    public function postUpdateOffice(Request $request) {
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
         $input = $request->all();
-        $office = Office::find($input['id']);
+        $office = Office::find($id);
         $office->name = $input['name'];
         $office->address= $input['address'];
         $office->time_open = $input['time_open'];
         $office->time_close = $input['time_close'];
+        $office->latitude = $input['latitude'];
+        $office->longtitude = $input['longtitude'];
         $office->save();
         return redirect ('/admin/offices');
     }
 
-    public function deleteOffice($id) {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
         Office::destroy($id);
         return redirect('/admin/offices');
     }
 
-
+    /*--------------------------------------------*/
+    
 }

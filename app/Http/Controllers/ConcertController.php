@@ -17,27 +17,105 @@ class ConcertController extends Controller
         $this->middleware('auth');
     }
 
-    public function concert($id) {
-        $concert = Concert::find($id);
-        return view('admin.concerts.show', compact('concert'));
-    }
 
-    public function concerts(){
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $concerts = Concert::all();
         return view("admin.concerts.index", compact('concerts'));
     }
 
-    public function getCreateConcert() {
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         return view("admin.concerts.create");
     }
 
-    public function deleteConcert($id) {
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $this->saveUploadedFiles($request, $input);
+        $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
+        $input['date_time'] = $datetime;
+        $concert =  Concert::create($input);
+
+        return redirect("/admin/concerts/".$concert->id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $concert = Concert::findOrFail($id);
+        return view('admin.concerts.show', compact('concert'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $concert = Concert::find($id);
+        return view("/admin.concerts.edit", compact('concert'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $input = $request->all();
+        $concert = Concert::find($id);
+        $concert->name = $input['name'];
+        $concert->description = $input['description'];
+        $concert->lim_age  = $input['lim_age'];
+        $concert->purchase_code = $input['purchase_code'];
+        $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
+        $concert['date_time'] = $datetime;
+        $this->saveUploadedFiles($request, $input);
+        $concert->save();
+
+        return redirect("/admin/concerts/".$concert->id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
         Concert::destroy($id);
         return redirect ("/admin/concerts");
     }
 
-    public function postCreateConcert(Request $request) {
-        $input = $request->all();
+    private function saveUploadedFiles(Request $request, $input) {
         $photo_file = $request->file('photo');
         $audio_file = $request->file('audio');
 
@@ -54,54 +132,6 @@ class ConcertController extends Controller
             $audio_path= "/audio/".$name;
             $input['audio_path'] = $audio_path;
         }
-
-        $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
-
-        $input['date_time'] = $datetime;
-
-        $concert =  Concert::create($input);
-
-        return redirect("/admin/concerts/".$concert->id);
-    }
-
-    public function editConcert($id) {
-        $concert = Concert::find($id);
-        return view("/admin.concerts.edit", compact('concert'));
-    }
-
-    public function updateConcert(Request $request) {
-
-        $input = $request->all();
-
-        $photo_file = $request->file('photo');
-        $audio_file = $request->file('audio');
-        $id = $input['id'];
-        $concert = Concert::find($id);
-        $concert->name = $input['name'];
-        $concert->description = $input['description'];
-        $concert->audience_count  = $input['audience_count'];
-        $concert->purchase_code = $input['purchase_code'];
-        $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
-        $concert['date_time'] = $datetime;
-
-        if($photo_file) {
-            $name = time(). $photo_file ->getClientOriginalName();
-            $photo_file->move("images", $name);
-            $photo_path= "/images/".$name;
-            $concert->photo_path = $photo_path;
-        }
-
-        if($audio_file) {
-            $name = time(). $audio_file ->getClientOriginalName();
-            $audio_file->move("audio", $name);
-            $audio_path= "/audio/".$name;
-            $concert->audio_path = $audio_path;
-        }
-
-        $concert->save();
-
-        return redirect("/admin/concerts/".$concert->id);
-
     }
 
 }

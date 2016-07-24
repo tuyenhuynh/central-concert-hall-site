@@ -25,7 +25,13 @@ class ConcertHallController extends Controller
 {
 
 
-    private $days = Array('Mon'=>'Понидельник', 'Tue'=>'Вторник', 'Wed'=>'Среду', 'Thu'=>'Пятницу', 'Fri'=>'Четверг', 'Sat'=>'Субботу', 'Sun'=>'Воскресенье');
+    private $days = Array('Mon'=>'Понидельник',
+                            'Tue'=>'Вторник',
+                            'Wed'=>'Среду',
+                            'Thu'=>'Пятницу',
+                            'Fri'=>'Четверг',
+                            'Sat'=>'Субботу',
+                            'Sun'=>'Воскресенье');
 
     private $months = Array('01'=>'янавря',
                             '02'=>'февраля',
@@ -41,31 +47,12 @@ class ConcertHallController extends Controller
                             '12'=>'декабря',
                             );
 
-    private $monthsUppercase = Array('01'=>'ЯНВАРЯ',
-        '02'=>'ФЕВРАЛЯ',
-        '03'=>'МАРТА',
-        '04'=>'АПРЕЛЯ',
-        '05'=>'МАЯ',
-        '06'=>'ИЮНЯ',
-        '07'=>'ИЮЛЯ',
-        '08'=>'АВГУТСА',
-        '09'=>'СЕНТЯБРЯ',
-        '10'=>'ОКТЯБРЯ',
-        '11'=>'НОЯБРЯ',
-        '12'=>'ДЕКАБРЯ',
-    );
-
     public function ajaxGetConcertsByDate( Request $request) {
         if($request->ajax()) {
             $rawDate = $request->input('date');
             $date  = DateTime::createFromFormat('D M d Y', $rawDate);
             $concerts = Concert::where('date_time', 'like', $date->format('Y-m-d')."%")->get();
-            foreach ($concerts as $concert) {
-                $concert['link'] = "/afisha/" . $concert->name ."/". $date->format('dmY');
-                $concert['datetime'] = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('d/m/Y, H:i');
-
-            }
-
+            $this->editConcertForView($concerts);
             return $concerts;
         }else {
             return "failed";
@@ -74,60 +61,57 @@ class ConcertHallController extends Controller
 
     public function index(){
         $concerts = Concert::all();
-        $information = Information::find(1);
-        foreach($concerts as $concert){
-            $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
-            $concert['displayed_date_time'] = $this->formatDateTime($date_time);
-        }
+        $information = Information::firstOrFail();
+        $this->editConcertForView($concerts);
         return view('index', compact(['concerts', 'information']));
     }
 
-    private function formatDateTime($date_time) {
-        $result = $date_time->format('d '). $this->months[$date_time->format('m')] .$date_time->format(' h:i');
-        return $result;
+    private function editConcertForView($concerts) {
+        foreach($concerts as $concert){
+            $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
+            $concert['displayed_date_time'] = $date_time->format('d ')
+                . $this->months[$date_time->format('m')]
+                .$date_time->format(' h:i');
+            $concert->link = "/afisha/". $concert->name ."/" .$date_time->format('dmY');
+        }
     }
-
-    private function convertDateOfWeekToRussian($date_time) {
-        return $this->days[$date_time->format('D')];
-    }
-
-
 
     public function posters(){
         $concerts = Concert::all();
-        $information = Information::find(1);
+        $information = Information::firstOrFail();
         foreach($concerts as $concert) {
             $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
-            $concert['month'] = $this->monthsUppercase[$date_time->format('m')];
+            $concert['month'] = $this->months[$date_time->format('m')];
             $concert['day_of_week'] = $this->days[$date_time->format('D')];
         }
         return view('posters', compact(['concerts', 'information']));
     }
 
-    public function poster($concert_name, $date_time) {
+    public function concert($concert_name, $date_time) {
         $concert_date_time = DateTime::createFromFormat('dmY', $date_time)->format('Y-m-d');
         $concert = Concert::where('name', $concert_name)
                         ->where('date_time', 'like', $concert_date_time."%")->first();
 
-        $information = Information::find(1);
+        $information = Information::firstOrFail();
         return view('concert', compact(['concert', 'information']));
     }
 
     public function hall(){
-        $information = Information::find(1);
+        $information = Information::firstOrFail();
         return view('hall', compact('information'));
     }
 
     public function contact() {
 
-        $information = Information::find(1);
+        $information = Information::firstOrFail();
         return view('contact', compact('information'));
     }
 
     public function offices(){
         $offices = Office::all();
-        $information = Information::find(1);
-        return view('offices', compact(['offices', 'information']));
+        $information = Information::firstOrFail();
+        $selected_office = Office::where('name', $information->office_location)->first(['latitude', 'longtitude']);
+        return view('offices', compact(['offices', 'information', 'selected_office']));
     }
 
     public function saveFeedback(Request $request){

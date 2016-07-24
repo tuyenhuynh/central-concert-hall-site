@@ -29,14 +29,15 @@ class AdminController extends Controller
 
     public function index()
     {
-        $information = Information::find(1);
-        return view("admin.index", compact('information'));
+        $information = Information::firstOrFail();
+        $offices = Office::all(['name', 'id']);
+        return view("admin.index", compact(['information', 'offices']));
     }
 
 
     public function ajaxUpdatePhoneNumber(Request $request) {
         if($request->ajax()) {
-            $information = Information::find(1);
+            $information = Information::firstOrFail();
             $information->phone_number = $request->phone_number;
             $information->save();
 
@@ -49,7 +50,7 @@ class AdminController extends Controller
 
     public function ajaxUpdateDefaultPurchaseCode (Request $request) {
         if($request->ajax()) {
-            $information = Information::find(1);
+            $information = Information::firstOrFail();
             $information->default_purchase_code = $request->default_purchase_code;
             $information->save();
 
@@ -61,7 +62,7 @@ class AdminController extends Controller
 
     public function ajaxUpdateCompanyInfo (Request $request) {
         if($request->ajax()) {
-            $information = Information::find(1);
+            $information = Information::firstOrFail();
             $information->company_info = $request->company_info;
             $information->save();
 
@@ -73,7 +74,7 @@ class AdminController extends Controller
 
     public function updateHallSchema (Request $request) {
 
-        $information = Information::find(1);
+        $information = Information::firstOrFail();
         $svg_file  = $request->file('hall_schema');
         if($svg_file) {
             $name = time().$svg_file ->getClientOriginalName();
@@ -88,7 +89,7 @@ class AdminController extends Controller
 
     public function ajaxUpdateHallSchema (Request $request) {
         if($request->ajax()) {
-            $information = Information::find(1);
+            $information = Information::firstOrFail();
             if($request->hasFile('schema')) {
                 return 'ok';
             }
@@ -105,7 +106,7 @@ class AdminController extends Controller
 
     public function ajaxUpdateHallText (Request $request) {
         if($request->ajax()) {
-            $information = Information::find(1);
+            $information = Information::firstOrFail();
             $information->hall_text = $request->hall_text;
             $information->save();
 
@@ -117,7 +118,7 @@ class AdminController extends Controller
 
     public function ajaxUpdateCeoText (Request $request) {
         if($request->ajax()) {
-            $information = Information::find(1);
+            $information = Information::firstOrFail();
             $information->ceo_text = $request->ceo_text;
             $information->save();
 
@@ -129,7 +130,7 @@ class AdminController extends Controller
 
     public function ajaxUpdateOfficeLocation (Request $request) {
         if($request->ajax()) {
-            $information = Information::find(1);
+            $information = Information::firstOrFail();
             $information->office_location = $request->office_location;
             $information->save();
 
@@ -139,5 +140,18 @@ class AdminController extends Controller
         }
     }
 
+    public function ajaxUpdateSocialNetworkLinks(Request $request) {
+        if($request->ajax()) {
+            $information = Information::firstOrFail();
+            $information->facebook_url = $request->facebook_url;
+            $information->vk_url = $request->vk_url;
+            $information->twitter_url = $request->twitter_url;
+            $information->instagram_url = $request->instagram_url;
+            $information->save();
+            return 'ok';
+        }else  {
+            return 'failed';
+        }
+    }
 
 }
