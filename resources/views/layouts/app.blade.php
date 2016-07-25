@@ -41,10 +41,14 @@
                     <h1>{{$information->phone_number}}</h1>
                     <button type="button" class="btn btn-success btn-purchase">Купить билет
                         <span style="display:none">
-                            {{--{{$information->default_purchase_code}}--}}
-                            https://vlg.kassir.ru/kassir/action/view/5155?iframedomain=volgocirk.ru
+                            {{$information->default_purchase_code}}
                         </span>
                     </button>
+                    @if(!Auth::guest())
+                        <a href="/logout">Logout</a>
+                    @else
+                        <a href="/login">Login</a>
+                    @endif
                 </div>
             @endif
         </div><!--

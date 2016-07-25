@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         $user  = $request->user();
-        if($user && $user->isAdmin()) {
+        if($user && $user->isAdmin() && $user->is_active) {
             return $next($request);
         }
         return redirect("/index");

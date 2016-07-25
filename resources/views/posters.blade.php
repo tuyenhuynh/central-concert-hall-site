@@ -11,14 +11,19 @@
     </div>
 
     <div class="container">
-        <div class="row poster-month">
-            <p>Июль 2016</p>
-        </div>
         <div class=" row concert-list">
             @if($result)
                 @foreach ($result as $concerts)
                     <ul>
                         @if($concerts)
+                            <?php
+                            mb_internal_encoding('UTF-8');
+                            setlocale(LC_CTYPE, 'ru_RU');
+                            $month_and_year = $concerts[0]->month ." " .  $concerts[0]->date_time_object->format('Y');
+                            ?>
+                            <div class="row" style="text-transform: uppercase">
+                                <h4>{{$month_and_year}}</h4>
+                            </div>
                             @foreach($concerts as $concert)
                                 <li>
                                     <div class="row poster-item" style="border:1px solid #dddddd">

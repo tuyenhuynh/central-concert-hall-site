@@ -22,7 +22,7 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
-Route::get('/login', 'Authentication@getLogin');
+//Route::get('/login', 'Authentication@getLogin');
 
 Route::auth();
 

@@ -5,6 +5,7 @@
     @if($concert)
         <div style="padding-bottom: 20px">
             <a href={{"/admin/concerts/".$concert->id}}  role="button" class="btn btn-primary"  >Отображать</a>
+            <a href={{"/admin/concerts/"}}  role="button" class="btn btn-primary"  >Список концертов</a>
         </div>
         <div class="row">
             <div class="col-md-9">

@@ -4,6 +4,7 @@
     @if($concert)
         <?php $date_time =DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time)->format('D d-m-Y H:i')?>
         <h4 class="sub-header">Концерт</h4>
+        <a href={{"/admin/concerts/"}}  role="button" class="btn btn-primary"  >Список концертов</a>
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
