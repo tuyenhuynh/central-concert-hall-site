@@ -46,6 +46,9 @@
                     </button>
                     @if(!Auth::guest())
                         <a href="/logout">Logout</a>
+                        @if(Auth::user() ->isAdmin())
+                            <a href="/admin">Admin</a>
+                        @endif
                     @else
                         <a href="/login">Login</a>
                     @endif
