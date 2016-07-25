@@ -5,6 +5,8 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Information;
+
 trait RegistersUsers
 {
     use RedirectsUsers;
@@ -29,8 +31,9 @@ trait RegistersUsers
         if (property_exists($this, 'registerView')) {
             return view($this->registerView);
         }
+        $information = Information::firstOrFail();
 
-        return view('auth.register');
+        return view('auth.register', compact('information'));
     }
 
     /**
