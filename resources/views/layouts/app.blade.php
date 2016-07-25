@@ -45,12 +45,13 @@
                         </span>
                     </button>
                     @if(!Auth::guest())
-                        <a href="/logout">Logout</a>
+                        <a href="/logout">Выход</a>
                         @if(Auth::user() ->isAdmin())
-                            <a href="/admin">Admin</a>
+                            <a href="/admin">Админ</a>
                         @endif
                     @else
-                        <a href="/login">Login</a>
+                        <a href="/login">Логин</a>
+                        <a href="/register">Регистрировать</a>
                     @endif
                 </div>
             @endif
