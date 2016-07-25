@@ -4,7 +4,7 @@
     <h4 class="sub-header">Добавить кассу</h4>
     <div class="row">
         <div class="col-md-8">
-            {!! Form::open(array('action' => 'OfficeController@store', 'method' => "post" ,'data-toggle' =>'validator')) !!}
+            {!! Form::open(array('action' => 'AdminOfficeController@store', 'method' => "post" ,'data-toggle' =>'validator')) !!}
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Касса</strong></div>
                 <div class="panel-body">

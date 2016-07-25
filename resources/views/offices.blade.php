@@ -15,23 +15,30 @@
             <div style="display: none">
                 <span id="lat">{{$selected_office->latitude}}</span>
                 <span id="long">{{$selected_office->longtitude}}</span>
+                <span id='office_name'>{{$selected_office->name}}</span>
             </div>
         </div>
         <div class="row">
-            <div id="map" class="map" style="width: 100%; height:400px">
-                <script>
-                    function initMap (){
-                        var mapDiv = document.getElementById('map');
-                        var map = new google.maps.Map(mapDiv, {
-                            center:{lat: $('#lat').html(), lng: $('#long').html()},
-                            zoom: 8
-                        }) ;
-                    }
-                </script>
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL-lqH-yssRE616SNDJWf6SyFBmvPCX8Q&callback=initMap">
-                </script>
+            <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCL-lqH-yssRE616SNDJWf6SyFBmvPCX8Q'></script>
+            <div style='overflow:hidden;height:440px;width:100%;'>
+                <div id='gmap_canvas' style='height:440px;width:100%;'></div>
+                <div><small><a href="http://embedgooglemaps.com">                                   embed google maps                           </a></small></div>
+                <div><small><a href="https://termsandcondiitionssample.com">terms and conditions sample</a></small></div>
+                <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
             </div>
+            <script type='text/javascript'>
+                function init_map(){
+                    console.log($("#office_name").html());
+                    var myOptions = {   zoom:10,
+                        center:new google.maps.LatLng(48.708048,44.513303),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP};
+
+                        map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+                        marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(48.708048,44.513303)});
+                        infowindow = new google.maps.InfoWindow({content:'<strong>' + $("#office_name").html() +'</strong><br>Волгоград, Россия<br>'});
+                        google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});
+                        infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+            </script>
         </div>
     </div>
     <div class="container office-container office-list" style="margin-top: 20px">

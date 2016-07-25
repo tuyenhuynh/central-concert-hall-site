@@ -92,7 +92,7 @@
 
         <div class="row">
             <div class="col-md-10">
-                {!! Form::open(array(  'id' =>'form-hall-schema', 'method' => "post", 'files' => true , 'data-toggle'=>"validator")) !!}
+                {!! Form::open(array(  'id' =>'form-hall-schema', 'action' => 'AdminController@updateHallSchema' , 'method' => "post", 'files' => true )) !!}
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Загрузить новую схему</strong></div>
                     <div class="panel-body">
@@ -302,7 +302,7 @@
             });
 
 
-            $('#form-company-info').click(function(e){
+            $('#form-company-info').submit(function(e){
                 e.preventDefault();
 
                 var company_info = $('#company_info').val();

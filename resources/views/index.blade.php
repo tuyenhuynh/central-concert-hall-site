@@ -50,31 +50,28 @@
                             <li>
                                 <div class="col-sm-4 col-lg-4 col-md-4">
                                     <div class="thumbnail">
-                                        <div style="max-width: 350px;  height:200px;">
+                                        <div>
                                             <img src={{$concert->photo_path}}  height=100%>
                                         </div>
                                         <div class="caption">
-                                            <div  style="display: inline; line-height: 2em">
-                                                {{--"--}}
-                                                <div style="float:left;">
-                                                    <a href='{{$concert->link}}'>{{$concert->name}}</a>
-                                                </div>
-                                                <div>
-                                                    {{$concert->lim_age . "+"}}
-                                                </div>
+                                            <div>
+                                                <h4><a href='{{$concert->link}}'>{{$concert->name}}</a>
+                                                </h4>
+                                                <h4> {{$concert->lim_age . "+"}}</h4>
                                             </div>
-                                            {{--<span><h4 ></h4><div style="display: inline-block"></div></span>--}}
 
                                             <p>{{$concert->description}}</p>
                                         </div>
                                         <div class="concert-time">
                                             <p>
-                                                <span class="glyphicon glyphicon-time" style="margin-right: 10px"></span>
+                                                <span class="glyphicon glyphicon-time" style="margin-right: 5px"></span>
                                                 {{$concert->displayed_date_time}}
                                             </p>
                                         </div>
                                         <div class="text-center center-block">
-                                            <a class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" role="button" href='{{$concert->purchase_code}}' style="margin-bottom: 20px">Купить билет</a>
+                                            <button class="btn btn-primary btn-purchase" type="button"  style="margin-bottom: 20px">Купить билет
+                                                <span style="display: none">{{$concert->purchase_code}}</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -82,24 +79,6 @@
                         @endforeach
                     @endif
                 </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body" style="height: 500px">
-                    <iframe src="" style="zoom:0.4" width="100%" height="100%" frameborder="0"></iframe>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddDefaultPurchaseCodeToInformations' => $baseDir . '/database/migrations/2016_07_21_092235_add_default_purchase_code_to_informations.php',
     'AddPurchaseCodeToConcerts' => $baseDir . '/database/migrations/2016_07_20_123901_add_purchase_code_to_concerts.php',
+    'AddRoleIdToUser' => $baseDir . '/database/migrations/2016_07_24_171423_add_role_id_to_user.php',
     'ChangeColumnHallSchemaType' => $baseDir . '/database/migrations/2016_07_21_120601_change_column_hall_schema_type.php',
     'ChangeFeedbackContentType' => $baseDir . '/database/migrations/2016_07_23_194444_change_feedback_content_type.php',
     'ChangeTimeTypeInOffices' => $baseDir . '/database/migrations/2016_07_20_155331_change_time_type_in_offices.php',

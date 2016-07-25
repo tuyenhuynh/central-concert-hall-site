@@ -2,6 +2,7 @@
 
 @section('content')
     <h4 class="sub-header">Концерты в ЦКЗ</h4>
+    <a href="/admin/concerts/create" role="button" class="btn btn-primary">Добавить</a>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

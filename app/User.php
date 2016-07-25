@@ -15,6 +15,10 @@ class User extends Authenticatable
         'name', 'email', 'password','rold_id', 'is_active'
     ];
 
+    public function isAdmin() {
+        return $this->role_id == 0;
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

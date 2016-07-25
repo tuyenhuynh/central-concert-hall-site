@@ -303,6 +303,7 @@ class ComposerStaticInita4afe049580a7137506a9cd9ce3178a4
     public static $classMap = array (
         'AddDefaultPurchaseCodeToInformations' => __DIR__ . '/../..' . '/database/migrations/2016_07_21_092235_add_default_purchase_code_to_informations.php',
         'AddPurchaseCodeToConcerts' => __DIR__ . '/../..' . '/database/migrations/2016_07_20_123901_add_purchase_code_to_concerts.php',
+        'AddRoleIdToUser' => __DIR__ . '/../..' . '/database/migrations/2016_07_24_171423_add_role_id_to_user.php',
         'ChangeColumnHallSchemaType' => __DIR__ . '/../..' . '/database/migrations/2016_07_21_120601_change_column_hall_schema_type.php',
         'ChangeFeedbackContentType' => __DIR__ . '/../..' . '/database/migrations/2016_07_23_194444_change_feedback_content_type.php',
         'ChangeTimeTypeInOffices' => __DIR__ . '/../..' . '/database/migrations/2016_07_20_155331_change_time_type_in_offices.php',

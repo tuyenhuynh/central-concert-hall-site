@@ -19,7 +19,7 @@ class Kernel extends HttpKernel
 
     /**
      * The application's route middleware groups.
-     *
+     * global middleware
      * @var array
      */
     protected $middlewareGroups = [
@@ -44,6 +44,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,

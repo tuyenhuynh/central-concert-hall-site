@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2 class="sub-header">Пользователя</h2>
+    <h4 class="sub-header">Пользователя</h4>
+    <a href="/admin/users/create" role="button" class="btn btn-primary" >Добавить</a>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -9,6 +10,8 @@
                 <th>#</th>
                 <th>Имя</th>
                 <th>Почта</th>
+                <th>Активность</th>
+                <th>Роль</th>
                 <th>Время создания</th>
                 <th>Время обновления</th>
                 <th></th>
@@ -22,6 +25,8 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->is_active ? "Активный" :"Не активный"}}</td>
+                        <td>{{$user->role_id ==0 ? "Admin" : "User"}}</td>
                         <td>{{$user->created_at->diffForHumans()}}</td>
                         <td>{{$user->updated_at->diffForHumans()}}
                         <td style="padding-right:0px;">
@@ -36,8 +41,8 @@
                                         <span class="fa fa-power-off"></span>
                                     </a>
                                 @else
-                                    <a href='{{"/admin/users/".$user->id."/activate"}}' class="btn-power-off">
-                                        <span class="fa fa-power-on"></span>
+                                    <a href='{{"/admin/users/".$user->id."/activate"}}' class="btn-power-on">
+                                        <span class="fa fa-toggle-on"></span>
                                     </a>
                                 @endif
                             </button>

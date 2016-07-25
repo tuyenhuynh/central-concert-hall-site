@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\Feedback;
 
-class FeedbackController extends Controller
+class AdminFeedbackController extends Controller
 {
     public function __construct()
     {

@@ -10,7 +10,7 @@ use App\Office;
 
 use DateTime;
 
-class OfficeController extends Controller
+class AdminOfficeController extends Controller
 {
     public function __construct()
     {

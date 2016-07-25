@@ -4,7 +4,7 @@
     <h4 class="sub-header">Добавить концерт</h4>
     <div class="row">
         <div class="col-md-9">
-            {!! Form::open(array('action' => 'ConcertController@postCreateConcert', 'method' => "post", 'files' => true , 'data-toggle' =>'validator')) !!}
+            {!! Form::open(array('route'=>['admin.concerts.store'], 'method' => "post", 'files' => true , 'data-toggle' =>'validator')) !!}
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Концерт</strong></div>
                 <div class="panel-body">
@@ -74,9 +74,9 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-md-12">
-                            {{ Form::label('description', 'Код Описание:', ['class' => 'control-label col-sm-3'])}}
+                            {{ Form::label('description', 'Описание:', ['class' => 'control-label col-sm-3'])}}
                             <div class="col-sm-9">
-                                {{ Form::text('description', null, ['data-minlength' => 20, 'class' => 'form-control', "placeholder"=>"", "required"=>"required", "data-error" =>"Поле Описание требуется"]) }}
+                                {{ Form::textarea('description', null, ['data-minlength' => 20, 'class' => 'form-control', "placeholder"=>"", "required"=>"required", "data-error" =>"Поле Описание требуется"]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>

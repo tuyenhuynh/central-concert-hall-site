@@ -4,7 +4,7 @@
     <h4 class="sub-header">Добавить пользователя</h4>
     <div class="row">
         <div class="col-md-8">
-            {!! Form::open(array('action' => 'UserController@store', 'method' => "post" ,'data-toggle' =>'validator')) !!}
+            {!! Form::open(array('action' => 'AdminUserController@store', 'method' => "post" ,'data-toggle' =>'validator')) !!}
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Новый пользователь</strong></div>
                 <div class="panel-body">
@@ -30,7 +30,7 @@
                         <div class="col-md-12">
                             {{ Form::label('password', 'Пароль:', ['class' => 'control-label col-sm-3'])}}
                             <div class="col-md-9">
-                                {{ Form::text('password', null, ['data-minlength'=>6, 'class' => 'form-control', "placeholder"=>"email", "required"=>"required", "data-error" =>"Поле пароль требуется"]) }}
+                                {{ Form::text('password', null, ['data-minlength'=>6, 'class' => 'form-control', "placeholder"=>"пароль", "required"=>"required", "data-error" =>"Поле пароль требуется"]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="col-md-12">
                             {{ Form::label('role_id', ' Роль', ['class' => 'control-label col-sm-3']) }}
                             <div class="col-md-9">
-                                {{ Form::select('role_id', ['1'=>'Администратор', '2'=>'Пользователь'], null,  ['class' => 'form-control', "required"=>"required"]) }}
+                                {{ Form::select('role_id', ['0'=>'Администратор', '1'=>'Пользователь'], null,  ['class' => 'form-control', "required"=>"required"]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>

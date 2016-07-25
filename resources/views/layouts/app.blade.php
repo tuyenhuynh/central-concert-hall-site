@@ -20,6 +20,7 @@
         <!-- Custom CSS -->
         <link href="/css/style.css" rel="stylesheet">
 
+        <script type="text/javascript" src="/js/jquery.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -38,7 +39,12 @@
             @if($information)
                 <div class="right-top-header">
                     <h1>{{$information->phone_number}}</h1>
-                    <a role="button" href='{{$information->default_purchase_code}}' class="btn btn-success btn-purchase">Купить билет</a>
+                    <button type="button" class="btn btn-success btn-purchase">Купить билет
+                        <span style="display:none">
+                            {{--{{$information->default_purchase_code}}--}}
+                            https://vlg.kassir.ru/kassir/action/view/5155?iframedomain=volgocirk.ru
+                        </span>
+                    </button>
                 </div>
             @endif
         </div><!--
@@ -54,9 +60,13 @@
         </nav>
     </header>
 
-
         @yield ('content')
-
+        <div id="popup">
+            <div class="content">
+                <iframe id ='ticket_frame' src="" style="zoom:0.5;" width="100%" height="100%" frameborder="0" ></iframe>
+                <img src="/images/close.png" onclick="hide_frame()" style="position: absolute; right: -16px;top: -16px; cursor: pointer">
+            </div>
+        </div>
         <div class="container">
 
             <hr>
@@ -78,9 +88,22 @@
                 </div>
             </footer>
         </div>
+        <script>
+            $('button.btn-purchase').click(function(){
+                var url = $(this).children('span').html();
+                $('iframe#ticket_frame').attr('src', url);
+                $('#popup').removeClass('hide1').addClass('show');
+            });
+            $('button.btn-close').click(function(){
+                hide_frame();
+            });
+            function hide_frame() {
+                $('#popup').removeClass('show').addClass('hide1');
+            }
+
+        </script>
         <!-- /.container -->
 
-        <script type="text/javascript" src="/js/jquery.js"></script>
         <script type="text/javascript" src="/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
         <script type="text/javascript" src='/js/validator.min.js'></script>

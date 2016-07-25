@@ -19,6 +19,6 @@ class AdminMiddleware
         if($user && $user->isAdmin()) {
             return $next($request);
         }
-        abort(404, 'No way.');
+        return redirect("/index");
     }
 }

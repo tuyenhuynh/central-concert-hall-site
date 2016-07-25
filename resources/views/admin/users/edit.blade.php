@@ -41,7 +41,7 @@
                             <div class="col-md-12">
                                 {{ Form::label('role_id', ' Роль', ['class' => 'control-label col-sm-3']) }}
                                 <div class="col-md-9">
-                                    {{ Form::select('role_id', ['1'=>'Администратор', '2'=>'Пользователь'], null,  ['class' => 'form-control', "required"=>"required"]) }}
+                                    {{ Form::select('role_id', ['0'=>'Администратор', '1'=>'Пользователь'], null,  ['class' => 'form-control', "required"=>"required"]) }}
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

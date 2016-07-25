@@ -24,7 +24,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     public function index()
@@ -66,7 +66,7 @@ class AdminController extends Controller
             $information->company_info = $request->company_info;
             $information->save();
 
-            return 'ok';
+            return 'Information updated';
         }else {
             return 'failed';
         }
@@ -83,7 +83,7 @@ class AdminController extends Controller
             $information->hall_schema = $svg_path;
             $information->save();
         }
-        return redirect('/admin/');
+        return redirect('/admin/#form-hall-schema');
 
     }
 

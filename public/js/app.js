@@ -18,21 +18,6 @@ $(document).ready(function(){
                 $(this).addClass('active-link');
             }
         });
-
-        // var liItem;
-        // if(tokens[3] =="index") {
-        //     liItem = $('ul#nav li').eq(0);
-        // }else if(tokens[3] == "afisha"){
-        //     liItem = $('ul#nav li').eq(1);
-        // }else if(tokens[3] == "biletnye_kassy") {
-        //     liItem = $('ul#nav li').eq(2);
-        // }else if(tokens[3] == "hall"){
-        //     liItem = $('ul#nav li').eq(3);
-        // }else if(tokens[3] == "contact") {
-        //     liItem = $('ul#nav li').eq(4);
-        // }
-        // liItem.children('a').addClass('active-link');
-
     };
 
     highlightActiveNav();
@@ -94,22 +79,27 @@ $(document).ready(function(){
                     var text = "<li>"
                         + '<div class="col-sm-4 col-lg-4 col-md-4">'
                         + '<div class="thumbnail">'
-                        + '<div style="max-width: 350px;  height:200px;">'
+                        + '<div>'
                         + '<img  src=' +  concert.photo_path + ' height=100%>'
                         + '</div>'
                         + '<div class="caption">'
-                        + '<h4 class="pull-right">' + concert.audience_count  + '</h4>'
+                        +'<div>'
                         + '<h4><a href="' + concert.link +'">' + concert.name +'</a></h4>'
+                        + '<h4>' + concert.lim_age  + "+" +'</h4>'
+                        + '</div>'
                         + '<p>' + concert.description + '</p>'
                         + ' </div>'
-                        + '<div class="concert-time" style="padding:20px">'
+                        + '<div class="concert-time">'
                         +  '<p>'
-                        +        '<span class="glyphicon glyphicon-time" style="padding-right:10px"></span>'
+                        +        '<span class="glyphicon glyphicon-time" style="margin-right:5px"></span>'
                         +        concert.displayed_date_time
                         +  '</p>'
                         + '</div>'
+
                         + '<div class="text-center center-block">'
-                        + '<a class="btn btn-primary" role="button" href="#" style="margin-bottom: 10px">Купить билет</a>'
+                        + '<button class="btn btn-primary btn-purchase" type="button" style="margin-bottom: 20px">Купить билет'
+                            +'<span style="display: none">' + concert.purchase_code + '</span>'
+                        +'</button>'
                         + '</div>'
                         +'</div>'
                         +'</div>'
@@ -181,11 +171,6 @@ $(document).ready(function(){
         updateCurrentDate();
     });
 
-    $('a.btn-purchase').click(function(e){
-        e.preventDefault();
-        var url = $(this).attr('href');
-        $('#myModal iframe').attr('src', url );
-    });
 });
 
 

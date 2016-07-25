@@ -52,7 +52,9 @@ class ConcertHallController extends Controller
             $rawDate = $request->input('date');
             $date  = DateTime::createFromFormat('D M d Y', $rawDate);
             $concerts = Concert::where('date_time', 'like', $date->format('Y-m-d')."%")->get();
-            $this->editConcertForView($concerts);
+            foreach ($concerts as $concert){
+                $this->editConcertForView($concert);
+            }
             return $concerts;
         }else {
             return "failed";
@@ -62,37 +64,80 @@ class ConcertHallController extends Controller
     public function index(){
         $concerts = Concert::all();
         $information = Information::firstOrFail();
-        $this->editConcertForView($concerts);
+        foreach ($concerts as $concert){
+            $this->editConcertForView($concert);
+        }
         return view('index', compact(['concerts', 'information']));
     }
 
-    private function editConcertForView($concerts) {
-        foreach($concerts as $concert){
-            $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
-            $concert['displayed_date_time'] = $date_time->format('d ')
-                . $this->months[$date_time->format('m')]
-                .$date_time->format(' h:i');
-            $concert->link = "/afisha/". $concert->name ."/" .$date_time->format('dmY');
-        }
+    private function editConcertForView($concert) {
+        $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
+        $concert['displayed_date_time'] = $date_time->format('d ')
+            . $this->months[$date_time->format('m')]
+            .","
+            .$date_time->format(' h:i');
+        $concert->link = "/afisha/". $concert->name ."/" .$date_time->format('dmY');
+
     }
 
     public function posters(){
         $concerts = Concert::all();
         $information = Information::firstOrFail();
+
         foreach($concerts as $concert) {
-            $date_time = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
-            $concert['month'] = $this->months[$date_time->format('m')];
-            $concert['day_of_week'] = $this->days[$date_time->format('D')];
+            $date_time_object = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time);
+            $concert->date_time_object = $date_time_object;
+            $concert['month'] = $this->months[$date_time_object->format('m')];
+            $concert['day_of_week'] = $this->days[$date_time_object->format('D')];
         }
-        return view('posters', compact(['concerts', 'information']));
+
+
+
+        $count = count($concerts);
+        $check = array();
+        for($i = 0 ; $i < $count; ++$i) {
+            $check[$i] = 0;
+        }
+
+        $result = array();
+
+        $c = 0 ;
+        for($i =0 ; $i < $count ; ++$i) {
+            if(!$check[$i]) {
+                $check[$i] = 1;
+                $result[$c] = array();
+                $result[$c][] = $concerts[$i];
+                for($j = $i +1 ; $j < $count ; ++$j) {
+                    if( !$check[$j] &&
+                        $this->sameMonthAndYear($concerts[$j]->date_time_object, $concerts[$i]->date_time_object )){
+                        $check[$j] = 1;
+                        $result[$c][] =$concerts[$j];
+                    }
+                }
+                ++$c;
+            }
+        }
+        return view('posters', compact(['result', 'information']));
+    }
+
+    private function sameMonthAndYear($date_time1 , $date_time2) {
+        return $date_time1->format('m') == $date_time2->format('m')
+                && $date_time1->format('Y') == $date_time2->format('Y');
     }
 
     public function concert($concert_name, $date_time) {
         $concert_date_time = DateTime::createFromFormat('dmY', $date_time)->format('Y-m-d');
         $concert = Concert::where('name', $concert_name)
                         ->where('date_time', 'like', $concert_date_time."%")->first();
-
         $information = Information::firstOrFail();
+        $this->editConcertForView($concert);
+
+
+
+
+
+
+
         return view('concert', compact(['concert', 'information']));
     }
 
@@ -110,16 +155,20 @@ class ConcertHallController extends Controller
     public function offices(){
         $offices = Office::all();
         $information = Information::firstOrFail();
-        $selected_office = Office::where('name', $information->office_location)->first(['latitude', 'longtitude']);
+        $selected_office = Office::where('name', $information->office_location)->first(['latitude', 'longtitude', 'name']);
         return view('offices', compact(['offices', 'information', 'selected_office']));
     }
 
     public function saveFeedback(Request $request){
-        $feedback = array('username' => $request->input('firstname')." ".$request->input('lastname'),
-                            'email'=> $request->input('email'),
-                            'content' =>$request->input('message'));
-        Feedback::create($feedback);
-        return redirect('/index');
+        
+        if($request->ajax()) {
+            $feedback = array('username' => $request->input('username'),
+                'email'=> $request->input('email'),
+                'content' =>$request->input('message'));
+            Feedback::create($feedback);
+            return "ok";
+        }
+        return "failed";
     }
 
 }

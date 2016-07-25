@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use App\Concert;
 
 use DateTime;
 
-class ConcertController extends Controller
+class AdminConcertController extends Controller
 {
     public function __construct()
     {
@@ -97,7 +98,11 @@ class ConcertController extends Controller
         $concert->purchase_code = $input['purchase_code'];
         $datetime = DateTime::createFromFormat('d.m.Y H:i', $input['datetime']);
         $concert['date_time'] = $datetime;
-        $this->saveUploadedFiles($request, $input);
+
+
+        $file_paths = $this->saveUploadedFiles($request);
+        $concert->photo_path = $file_paths['photo_path'];
+        $concert->audio_path = $file_paths['audio_path'];
         $concert->save();
 
         return redirect("/admin/concerts/".$concert->id);
@@ -115,23 +120,30 @@ class ConcertController extends Controller
         return redirect ("/admin/concerts");
     }
 
-    private function saveUploadedFiles(Request $request, $input) {
+    private function saveUploadedFiles(Request $request) {
         $photo_file = $request->file('photo');
         $audio_file = $request->file('audio');
 
+        $result = array();
         if($photo_file) {
             $name = time(). $photo_file ->getClientOriginalName();
             $photo_file->move("images", $name);
             $photo_path= "/images/".$name;
-            $input['photo_path'] = $photo_path;
+            $result['photo_path'] = $photo_path;
+        }else {
+            $result['photo_path'] = "http://placehold.it/350x150";
         }
 
         if($audio_file) {
             $name = time(). $audio_file ->getClientOriginalName();
             $audio_file->move("audio", $name);
             $audio_path= "/audio/".$name;
-            $input['audio_path'] = $audio_path;
+            $result['audio_path'] = $audio_path;
+        }else {
+            $result['audio_path'] = "";
         }
+
+        return $result;
     }
 
 }

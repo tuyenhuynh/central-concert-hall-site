@@ -1,7 +1,9 @@
 @extends ('layouts.admin')
 
 @section('content')
-    <h2 class="sub-header">Кассы продаж</h2>
+    <h4 class="sub-header">Кассы продаж</h4>
+
+    <a class="btn btn-primary" role="button" href="/admin/offices/create">Добавить</a>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

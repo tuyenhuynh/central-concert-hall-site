@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class UserController extends Controller
+class AdminUserController extends Controller
 {
     public function __construct()
     {
@@ -43,8 +43,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
-        return redirect('/admin/users');
+        $request->password = bcrypt($request->password);
+
+        $user =  User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'is_active' => $request->is_active,
+            'role_id' => $request->role_id,
+        ]);
+
         return $this->show($user->id);
     }
 
@@ -91,26 +99,27 @@ class UserController extends Controller
         if($user) {
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = bcrypt($request->password);
             $user->is_active = $request->is_active;
             $user->role_id = $request->role_id;
+            $user->save();
         }
         return redirect('/admin/users');
     }
 
-    public function deactivate($id) {
+    public function deactivateUser($id) {
         $user = User::findOrFail($id);
         if($user) {
-            $user->is_active = 1;
+            $user->is_active = 0;
             $user->save();
         }
         return redirect('/admin/users/');
     }
 
-    public function activate($id)  {
+    public function activateUser($id)  {
         $user = User::findOrFail($id);
         if($user) {
-            $user->is_active = 0;
+            $user->is_active = 1;
             $user->save();
         }
         return redirect('/admin/users/');

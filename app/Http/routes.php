@@ -26,17 +26,17 @@ Route::get('/login', 'Authentication@getLogin');
 
 Route::auth();
 
-Route::resource('admin/offices', 'OfficeController');
+Route::resource('admin/offices', 'AdminOfficeController');
 
-Route::resource('admin/feedbacks', 'FeedbackController');
+Route::resource('admin/feedbacks', 'AdminFeedbackController');
 
-Route::resource('admin/concerts', 'ConcertController');
+Route::resource('admin/concerts', 'AdminConcertController');
 
-Route::resource('admin/users', 'UserController');
+Route::resource('admin/users', 'AdminUserController');
 
-Route::post('admin/users/{id}/activate', 'UserController@activateUser');
+Route::get('admin/users/{id}/activate', 'AdminUserController@activateUser');
 
-Route::post('admin/users/{id}/deactivate', 'UserController@deActivateUser');
+Route::get('admin/users/{id}/deactivate', 'AdminUserController@deActivateUser');
 
 Route::post('/ajax-get-concert-by-date', 'ConcertHallController@ajaxGetConcertsByDate');
 
@@ -52,7 +52,7 @@ Route::get('/afisha/{concert_name}/{date_time}', 'ConcertHallController@concert'
 
 Route::get('/biletnye_kassy', 'ConcertHallController@offices') ->name('offices');
 
-Route::post('/saveFeedback','ConcertHallController@saveFeedback');
+Route::post('/ajax_post_feedback','ConcertHallController@saveFeedback');
 
 Route::get('/admin/', 'AdminController@index');
 
