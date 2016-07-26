@@ -101,6 +101,7 @@ td a span {
 }
 
 
+
 /*
  * Main content
  */
@@ -138,3 +139,6 @@ td a span {
     border-radius: 50%;
 }
 
+.navbar-header a{
+    color:#fff;
+}

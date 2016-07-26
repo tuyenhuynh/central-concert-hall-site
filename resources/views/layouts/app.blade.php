@@ -83,10 +83,10 @@
             <footer>
                 <div class="row text-center">
                     <div class="col-md-12 text-center social-links" >
-                        <a href='{{$information->twitter_url}}'><i class="fa fa-twitter fa-2x"></i></a>
-                        <a href="{{$information->instagram_url}}"><i class="fa fa-instagram fa-2x"></i></a>
-                        <a href="{{$information->facebook_url}}"><i class="fa fa-facebook fa-2x"></i></a>
-                        <a href="{{$information->vk_url}}"><i class="fa fa-vk fa-2x"></i></a>
+                        <a href='{{$information->twitter_url}}' target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a href="{{$information->instagram_url}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+                        <a href="{{$information->facebook_url}}" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a href="{{$information->vk_url}}" target="_blank"><i class="fa fa-vk fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="row">
