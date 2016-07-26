@@ -39,15 +39,14 @@
             @if($information)
                 <div class="right-top-header">
                     <h1>{{$information->phone_number}}</h1>
-                    <button type="button" class="btn btn-success btn-purchase">Купить билет
+                    <button type="button" style="margin-top: 7px;" class="btn btn-success btn-purchase">Купить билет
                         <span style="display:none">
                             {{$information->default_purchase_code}}
                         </span>
                     </button>
                 </div>
             @endif
-        </div><!--
-        <h1><a href="#">Future Imperfect</a></h1> -->
+        </div>
         <nav class="links">
             <ul id="nav">
                 <li><a href="/index">Главная</a></li>
