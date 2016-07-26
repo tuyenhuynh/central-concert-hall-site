@@ -54,7 +54,7 @@ class AdminUserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'is_active' => $request->is_active,
-            'role_id' => $this->role_id,
+            'role_id' => $request->role_id,
         ]);
 
         return $this->show($user->id);
