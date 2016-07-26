@@ -1,5 +1,7 @@
 @extends ('layouts.app')
 
+@section('title', 'Контакт')
+
 @section('content')
     <div class="container">
         {!! Breadcrumbs::render('contact') !!}

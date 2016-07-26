@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section ('title', $concert->name ."/".$concert->date_code.'в Центральном концертном зале');
+
 @section('content')
     <div class="container">
         {!! Breadcrumbs::render('concert', $concert) !!}
@@ -6,7 +9,6 @@
 
     <div class="container">
         @if($concert)
-            <?php $datetime = DateTime::createFromFormat('Y-m-d H:i:s', $concert->date_time) ?>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <img class="single-concert-image" src={{$concert->photo_path}} alt="">
@@ -47,9 +49,11 @@
                 </div>
             </div>
             <div class="row buy-ticket text-center" style="margin-top:30px">
-                <a class="btn btn-primary btn-purchase" data-toggle="modal" data-target="#myModal" role="button" href='{{$concert->purchase_code}}' style="margin-bottom: 10px">Купить билет</a>
+                <button class="btn btn-primary btn-purchase" type="button" style="margin-bottom: 10px">Купить билет
+                    <span style="display: none">{{$concert->purchase_code}}</span>
+                </button>
             </div>
-            <div class="row ceo-text">
+            <div class="row seo-text">
                 <div class="col-md-10 col-md-offset-1">
                     @if($information)
                         {{$information->ceo_text}}

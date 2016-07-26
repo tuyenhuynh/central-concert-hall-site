@@ -54,6 +54,17 @@ a:hover, a:focus{
     clear:both;
 }
 
+.btn-purchase {
+}
+
+.concert-list {
+    margin-top:-25px;
+}
+
+.month-and-year{
+    margin-top: 30px;text-transform: uppercase;
+}
+
 .single-concert-image {
     margin-top:20px;
     position:relative;
@@ -61,13 +72,31 @@ a:hover, a:focus{
 }
 .concert-image {
     width:100%;
-
     margin-top: 10px;
 }
 
 .poster-item {
+    border:1px solid #dddddd;
     margin-top: 20px;
+    border-radius: 3px;
+    background-color:#fff;
 }
+
+.poster-item:hover, .poster-item:focus {
+    border-color: #00A000;
+}
+
+.poster-image{
+    float:left;
+    padding: 10px;
+    height: 200px!important;
+    width:300px !important;
+}
+
+.concert-list >ul {
+    margin-left:-10px;
+}
+
 .concert-list > ul > li{
     margin-left: 0;
 }
@@ -203,6 +232,43 @@ li.date {
 .poster-date{
     margin-top:5px;
     margin-bottom: 50px;
+}
+
+.poster-date-of-month{
+    float:left;
+    margin-left: 20px;
+    margin-top:50px;
+}
+
+.poster-date-of-week{
+    float:left;
+    margin-left:20px;
+    margin-top:50px;
+}
+
+.poster-date-of-week > h4{
+    text-transform: uppercase;
+}
+
+.poster-date-of-week > h5{
+    color:#d17581;
+}
+
+.poster-name {
+    float:left;
+    margin-left:40px;
+    margin-top:50px;
+}
+
+.poster-ticket-link {
+    float:right;
+    margin-right:20px;
+    margin-top:70px;
+    margin-bottom: 20px;
+}
+
+.seo-text {
+    margin-top:40px;
 }
 
 .date > a {
@@ -371,4 +437,8 @@ footer {
 
 .ceo-text {
     margin-top: 20px;
+}
+
+.hr-style{
+    border: 0;height: 1px;background: #333;background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }

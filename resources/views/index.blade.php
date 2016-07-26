@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section ('title', 'Билеты на концерты в ЦКЗ');
+
 @section('content')
 <div class="container">
     <div class="padding"></div>

@@ -17,7 +17,7 @@ Breadcrumbs::register('posters', function($breadcrumbs)
 Breadcrumbs::register('concert', function($breadcrumbs, $concert)
 {
     $breadcrumbs->parent('posters');
-    $breadcrumbs->push($concert->name, route('concert', [$concert->name, $concert->date_time] ));
+    $breadcrumbs->push($concert->name."/".$concert->date_code, route('concert', [$concert->name, $concert->date_time] ));
 });
 
 // Home > offices

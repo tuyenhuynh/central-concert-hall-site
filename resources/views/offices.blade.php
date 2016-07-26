@@ -1,11 +1,10 @@
 @extends('layouts.app')
-
+@section ('title', 'Билетные кассы')
 @section('content')
     <div class="container office-container">
-        <div class="row">
-            {!! Breadcrumbs::render('offices') !!}
-        </div>
-        <div class="row poster-header">
+
+        {!! Breadcrumbs::render('offices') !!}
+        <div class="poster-header">
             <h3>Кассы продаж</h3>
         </div>
     </div>
@@ -18,7 +17,7 @@
                 <span id='office_name'>{{$selected_office->name}}</span>
             </div>
         </div>
-        <div class="row">
+        <div>
             <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCL-lqH-yssRE616SNDJWf6SyFBmvPCX8Q'></script>
             <div style='overflow:hidden;height:440px;width:100%;'>
                 <div id='gmap_canvas' style='height:440px;width:100%;'></div>
@@ -42,7 +41,7 @@
         </div>
     </div>
     <div class="container office-container office-list" style="margin-top: 20px">
-        <div class="row">
+        <div>
             <h3>Адресы офисов</h3>
             <table class="table table-striped table-bordered" style="margin-top:10px">
                 <thead>

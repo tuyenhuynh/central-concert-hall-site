@@ -1,10 +1,13 @@
 @extends('layouts.app')
+
+@section('title', 'Афиша концертов ЦКЗ')
+
 @section('content')
     <div class="container">
-        <div class="row">
+        <div>
             {!! Breadcrumbs::render('posters') !!}
         </div>
-        <div class="row poster-header">
+        <div class="poster-header">
             <h3>Aфиша концертов ЦКЗ</h3>
         </div>
         <div></div>
@@ -17,29 +20,27 @@
                     <ul>
                         @if($concerts)
                             <?php
-                            mb_internal_encoding('UTF-8');
-                            setlocale(LC_CTYPE, 'ru_RU');
                             $month_and_year = $concerts[0]->month ." " .  $concerts[0]->date_time_object->format('Y');
                             ?>
-                            <div class="row" style="text-transform: uppercase">
+                            <div class="row month-and-year">
                                 <h4>{{$month_and_year}}</h4>
                             </div>
                             @foreach($concerts as $concert)
                                 <li>
-                                    <div class="row poster-item" style="border:1px solid #dddddd">
-                                        <img src= {{$concert->photo_path}} alt="" style="float:left; max-height: 150px; max-width:200px">
+                                    <div class="row poster-item">
+                                        <img src= {{$concert->photo_path}} alt="" class="poster-image">
                                         <div class="concert-poster-detail">
-                                            <div class="concert-poster-date-of-month" style="float:left; margin-left: 20px; margin-top:30px">
+                                            <div class="poster-date-of-month">
                                                 <h2>{{$concert->date_time_object->format('d')}}</h2>
                                             </div>
-                                            <div class="concert-poster-date-of-week" style="float:left; margin-left:20px; margin-top:30px">
-                                                <h5 style="color:#d17581">{{$concert->day_of_week}}</h5>
-                                                <h4 style="text-transform: uppercase">{{strtoupper($concert->month) ." ". $concert->date_time_object->format('Y')}}</h4>
+                                            <div class="poster-date-of-week">
+                                                <h5>{{$concert->day_of_week}}</h5>
+                                                <h4>{{$concert->month." ". $concert->date_time_object->format('Y')}}</h4>
                                             </div>
-                                            <div class="concert-poster-name" style="float:left; margin-left:40px; margin-top:35px">
+                                            <div class="poster-name">
                                                 <h3><a href='{{"/afisha/".$concert->name."/".$concert->date_time_object->format("dmY")}}' >{{$concert->name}}</a></h3>
                                             </div>
-                                            <div class="concert-poster-buy-ticket" style="float:right; margin-right:20px; margin-top:50px">
+                                            <div class="poster-ticket-link">
                                                 <button class="btn btn-success btn-purchase" role="button">
                                                     Билеты
                                         <span style="display:none">
@@ -58,7 +59,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="seo-text">
             @if($information)
                 {{$information->ceo_text}}
             @endif

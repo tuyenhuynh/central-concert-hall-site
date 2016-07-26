@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Схема зала')
+
 @section('content')
     <div class="container">
         {!! Breadcrumbs::render('hall') !!}

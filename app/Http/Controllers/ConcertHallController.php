@@ -76,8 +76,8 @@ class ConcertHallController extends Controller
             . $this->months[$date_time->format('m')]
             .","
             .$date_time->format(' h:i');
-        $concert->link = "/afisha/". $concert->name ."/" .$date_time->format('dmY');
-
+        $concert->date_code = $date_time->format('dmY');
+        $concert->link = "/afisha/". $concert->name ."/" .$concert->date_code;
     }
 
     public function posters(){
@@ -90,8 +90,6 @@ class ConcertHallController extends Controller
             $concert['month'] = $this->months[$date_time_object->format('m')];
             $concert['day_of_week'] = $this->days[$date_time_object->format('D')];
         }
-
-
 
         $count = count($concerts);
         $check = array();

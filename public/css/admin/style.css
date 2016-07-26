@@ -100,7 +100,9 @@ td a span {
     background-color: #428bca;
 }
 
-
+button {
+    border: 1px solid white;
+}
 
 /*
  * Main content
