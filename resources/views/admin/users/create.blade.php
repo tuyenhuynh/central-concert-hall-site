@@ -39,7 +39,7 @@
                         <div class="col-md-12">
                             {{ Form::label('role_id', ' Роль', ['class' => 'control-label col-sm-3']) }}
                             <div class="col-md-9">
-                                {{ Form::select('role_id', ['0'=>'Администратор', '1'=>'Пользователь'], null,  ['class' => 'form-control', "required"=>"required"]) }}
+                                {{ Form::select('role_id', ['0'=>'Администратор', '1'=>'Пользователь'], User::$ROLE_USER,  ['class' => 'form-control', "required"=>"required"]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="col-md-12">
                             {{ Form::label('is_active', ' Активность', ['class' => 'control-label col-sm-3']) }}
                             <div class="col-md-9">
-                                {{ Form::select('is_active', ['1'=>'Активный', '0'=>'Не активный'], null,  ['class' => 'form-control', "required"=>"required"]) }}
+                                {{ Form::select('is_active', ['1'=>'Активный', '0'=>'Не активный'], User::$ACTIVE,  ['class' => 'form-control', "required"=>"required"]) }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>

@@ -31,20 +31,32 @@
                         <td>{{$user->updated_at->diffForHumans()}}
                         <td style="padding-right:0px;">
                             <button>
-                                <a href ={{"/admin/users/".$user->id."/edit"}}><span class="fa fa-edit"></span></a>
+                                @if(!$user->isAdmin() || Auth::user()->id == $user->id)
+
+                                    <a href ={{"/admin/users/".$user->id."/edit"}}><span class="fa fa-edit"></span></a>
+                                @else
+                                    <span class="fa fa-hand-o-right"></span>
+                                @endif
+
                             </button>
                         </td>
                         <td style="padding-left:0px;">
                             <button>
-                                @if($user->is_active)
-                                    <a  href='{{"/admin/users/".$user->id."/deactivate"}}' class="btn-power-off">
-                                        <span class="fa fa-power-off"></span>
-                                    </a>
+                                @if(!$user->isAdmin())
+                                    @if($user->is_active)
+                                        <a  href='{{"/admin/users/".$user->id."/deactivate"}}' class="btn-power-off">
+                                            <span class="fa fa-power-off"></span>
+                                        </a>
+                                    @else
+                                        <a href='{{"/admin/users/".$user->id."/activate"}}' class="btn-power-on">
+                                            <span class="fa fa-toggle-on"></span>
+                                        </a>
+                                    @endif
                                 @else
-                                    <a href='{{"/admin/users/".$user->id."/activate"}}' class="btn-power-on">
-                                        <span class="fa fa-toggle-on"></span>
-                                    </a>
+                                    <span class="fa fa-hand-o-right"></span>
                                 @endif
+
+
                             </button>
                         </td>
                     </tr>

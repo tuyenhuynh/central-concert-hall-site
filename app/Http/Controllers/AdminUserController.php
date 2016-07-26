@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
+
 class AdminUserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
+
 
     /**
      * Display a listing of the resource.
@@ -21,6 +24,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
+
         $users = User::all();
         return view('admin.users.index', compact('users'));
     }
@@ -50,7 +54,7 @@ class AdminUserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'is_active' => $request->is_active,
-            'role_id' => $request->role_id,
+            'role_id' => $this->role_id,
         ]);
 
         return $this->show($user->id);
@@ -99,7 +103,6 @@ class AdminUserController extends Controller
         if($user) {
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = bcrypt($request->password);
             $user->is_active = $request->is_active;
             $user->role_id = $request->role_id;
             $user->save();
@@ -110,7 +113,7 @@ class AdminUserController extends Controller
     public function deactivateUser($id) {
         $user = User::findOrFail($id);
         if($user) {
-            $user->is_active = 0;
+            $user->is_active = User::$NON_ACTIVE;
             $user->save();
         }
         return redirect('/admin/users/');
@@ -119,7 +122,7 @@ class AdminUserController extends Controller
     public function activateUser($id)  {
         $user = User::findOrFail($id);
         if($user) {
-            $user->is_active = 1;
+            $user->is_active =User::$ACTIVE;
             $user->save();
         }
         return redirect('/admin/users/');
