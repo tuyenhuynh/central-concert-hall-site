@@ -5,7 +5,6 @@
     <h4 class="sub-header">Администрация</h4>
 
     @if($information)
-
         <div class="row">
             <div class="col-md-10">
                 {!! Form::open(array('method' => "post" , 'id'=>'form-phone-number', 'data-toggle'=>"validator")) !!}
@@ -360,43 +359,6 @@
                     '_token': token
                 }, '/admin/update-social-network-link');
             });
-
-//
-//        $('#btn-update-hall-schema').click(function(e){
-//            e.preventDefault();
-//
-//            var hall_schema = $('#hall_schema').val();
-//            $.ajax({
-//                url:'/admin/update_hall_schema',
-//                type:'POST',
-//                data: {
-//                    'schema': new FormData($("#hall")[0]),
-//                    '_token': token
-//                }, success: function(data){
-//                    alert(data);
-//                }
-//            });
-//        });
-//
-//        $('#form-upload-schema1').on('submit', function (e) {
-//            var url = "/admin/update_hall_schema";
-//            $.ajax({
-//                type: "POST",
-//                url: url,
-//                data: {
-//                    'photo' : new FormData::($('#form-upload-schema')[0]),
-//                    '_token': token
-//                },
-//                success: function (data)
-//                {
-//                    if(data == 'ok') {
-//                        alert(data);
-//                    }else {
-//                        alert('failed');
-//                    }
-//                }
-//            });
-//        })
 
         });
     </script>

@@ -92,12 +92,15 @@
             $(document).ready(function (){
                 var url = window.location.href;
                 $('ul.nav li a').each(function(){
-                    console.log(url);
-                    console.log(this.href);
                     if(url == this.href) {
-                        console.log(this.href);
                         $(this).parent().addClass('active');
                     }
+                });
+                $('ul.nav li a').click(function(){
+                    $('ul.nav li a').each(function(){
+                        $(this).parent().removeClass('active');
+                    });
+                    $(this).parent().addClass('active');
                 });
             });
         </script>
