@@ -12,32 +12,64 @@
     <div class="container office-container">
         <div class="row">
             <div style="display: none">
-                <span id="lat">{{$selected_office->latitude}}</span>
-                <span id="long">{{$selected_office->longtitude}}</span>
-                <span id='office_name'>{{$selected_office->name}}</span>
+                <ul>
+                    @foreach ($offices as $office)
+                        <li class="office">
+                            <span class="lat">{{$office->latitude}}</span>
+                            <span class="long">{{$office->longtitude}}</span>
+                            <span class='office_name'>{{$office->name}}</span>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
         <div>
-            <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCL-lqH-yssRE616SNDJWf6SyFBmvPCX8Q'></script>
-            <div style='overflow:hidden;height:440px;width:100%;'>
-                <div id='gmap_canvas' style='height:440px;width:100%;'></div>
-                <div><small><a href="http://embedgooglemaps.com">                                   embed google maps                           </a></small></div>
-                <div><small><a href="https://termsandcondiitionssample.com">terms and conditions sample</a></small></div>
-                <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
-            </div>
+            <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCL-lqH-yssRE616SNDJWf6SyFBmvPCX8Q&v=3.exp'>
+            </script>
+            <div style='overflow:hidden;height:440px;width:px;'>
+                <div id='gmap_canvas' style='height:440px;width:px;'></div>
+                <div><small><a href="http://embedgooglemaps.com">embed google maps</a></small></div>
+                <div><small><a href="https://termsofusegenerator.net">terms of use generator</a></small></div>
+                <style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div>
             <script type='text/javascript'>
                 function init_map(){
-                    console.log($("#office_name").html());
-                    var myOptions = {   zoom:10,
-                        center:new google.maps.LatLng(48.708048,44.513303),
-                        mapTypeId: google.maps.MapTypeId.ROADMAP};
+                    var myOptions = {
+                        zoom:12,
+                        center:new google.maps.LatLng(48.708048,44.51330340000004),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+                    var offices = $('ul > li.office');
+                    var length = offices.length;
+                    var markers = [];
+                    var infowindows = [];
+                    for(var i = 0 ; i< length ; ++i) {
+                        var data = offices.eq(i).children();
+                        var lat = data.eq(0).html(),
+                                long = data.eq(1).html(),
+                                name = data.eq(2).html();
 
-                        map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
-                        marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(48.708048,44.513303)});
-                        infowindow = new google.maps.InfoWindow({content:'<strong>' + $("#office_name").html() +'</strong><br>Волгоград, Россия<br>'});
-                        google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});
-                        infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+                        console.log("lat: " + lat +", long: " + long + " name: " +name);
+
+                        var marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(lat,long)});
+                        markers.push(marker);
+                        var infowindow = new google.maps.InfoWindow({
+                            content:'<strong>' + name + '</strong><br>Volgograd, Russia<br>'});
+                        infowindows.push(infowindow);
+                        google.maps.event.addListener(
+                                marker,
+                                'click',
+                                function(){
+                                    infowindow.open(map,marker);
+                                    console.log(marker.position);
+                                });
+                        infowindow.open(map,marker);
+                    }
+                }
+                google.maps.event.addDomListener(window, 'load', init_map);
+
             </script>
+
         </div>
     </div>
     <div class="container office-container office-list" style="margin-top: 20px">
