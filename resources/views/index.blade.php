@@ -50,10 +50,10 @@
                     @if($concerts)
                         @foreach($concerts as $concert)
                             <li>
-                                <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="col-sm-6 col-lg-4 col-md-4">
                                     <div class="thumbnail">
                                         <div>
-                                            <img src={{$concert->photo_path}}  height=100%>
+                                            <img src='{{$concert->photo_path}}'  style="height:100%;"/>
                                         </div>
                                         <div class="caption">
                                             <div>
