@@ -10,7 +10,6 @@
     </div>
     <div></div>
 </div>
-
 <div class="container poster-date">
     <div class="row" style="float: none; margin: 0 auto;" >
         <div class="col-md-12 col-xs-12 col-centered">
@@ -36,6 +35,16 @@
         </div>
 
     </div>
+</div>
+
+<div style="display: none">
+    <ul id="date-of-concerts">
+        @foreach($concerts as $concert)
+            <li>
+                {{$concert->standard_date}}
+            </li>
+        @endforeach
+    </ul>
 </div>
 
 <!-- Page Content -->

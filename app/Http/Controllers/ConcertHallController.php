@@ -61,6 +61,19 @@ class ConcertHallController extends Controller
         }
     }
 
+    public function ajaxGetDatesHavingConcerts(Request $request) {
+        if($request->ajax()) {
+            $rawDate = $request->input('date');
+            $date  = DateTime::createFromFormat('D M d Y', $rawDate);
+            $count  = $request->input('count');
+            $result = array();
+
+            return "got it";
+        }else {
+            return "failed";
+        }
+    }
+
     public function index(){
         $concerts = Concert::all();
         $information = Information::firstOrFail();
@@ -78,6 +91,7 @@ class ConcertHallController extends Controller
             .$date_time->format(' h:i');
         $concert->date_code = $date_time->format('dmY');
         $concert->link = "/afisha/". $concert->name ."/" .$concert->date_code;
+        $concert->standard_date = $date_time->format('M d, Y');
     }
 
     public function posters(){

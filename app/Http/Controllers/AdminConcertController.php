@@ -100,9 +100,22 @@ class AdminConcertController extends Controller
         $concert['date_time'] = $datetime;
 
 
-        $file_paths = $this->saveUploadedFiles($request);
-        $concert->photo_path = $file_paths['photo_path'];
-        $concert->audio_path = $file_paths['audio_path'];
+        $photo_file = $request->file('photo');
+        $audio_file = $request->file('audio');
+
+        if($photo_file) {
+            $name = time(). $photo_file ->getClientOriginalName();
+            $photo_file->move("images", $name);
+            $photo_path= "/images/".$name;
+            $concert['photo_path'] = $photo_path;
+        }
+        if($audio_file) {
+            $name = time(). $audio_file ->getClientOriginalName();
+            $audio_file->move("audio", $name);
+            $audio_path= "/audio/".$name;
+            $result['audio_path'] = $audio_path;
+        }
+
         $concert->save();
 
         return redirect("/admin/concerts/".$concert->id);

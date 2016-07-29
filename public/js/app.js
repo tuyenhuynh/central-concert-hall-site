@@ -44,6 +44,14 @@ $(document).ready(function(){
     var count = $('ul#dates li').length;
     var startDate =  new Date();
 
+    var dateHavingConcerts = Array();
+
+    $('#date-of-concerts > li').each(function(){
+        rawDate = $(this).html();
+        var date = Date.parse(rawDate);
+        dateHavingConcerts.push((new Date(date)).toDateString());
+    });
+
 //change displayed month to be the month of the left-most button
     function updateMonth(month) {
         $('h4.current-month').html('Aфиша ЦКЗ на ' + months[month]);
@@ -111,8 +119,6 @@ $(document).ready(function(){
 
     }
 
-//this function change color of button and keep the color of selected button green,
-// no matter what user click to left or right
     function updateCalendar() {
 
         var d = startDate.getDate(),
@@ -120,8 +126,7 @@ $(document).ready(function(){
             y = startDate.getYear() + 1900;
 
         for (var i = 0 ; i < count ; ++i) {
-
-            var date = new Date(y,m, d + i);
+            var date = (new Date(y,m, d + i));
             var currentElement = dateList.eq(i);
             var currentDay = date.getDay();
             var button = currentElement.children('button');
@@ -132,23 +137,14 @@ $(document).ready(function(){
             }else {
                 button.addClass('btn-default');
             }
+            if(dateHavingConcerts.indexOf(date.toDateString()) > -1 ) {
+                button.removeClass('btn-default').removeClass('btn-grey').addClass('btn-success');
+            }
         }
-
         updateMonth(startDate.getMonth());
-
     }
 
     updateCalendar();
-
-//update concert list for selected date
-    function updateCurrentDate(){
-        if(currentIndex == -1) {
-            currentIndex = 0;
-        }
-        getConcertsByButton($('ul#dates li').eq(currentIndex), currentIndex);
-        $('ul#dates li').eq(currentIndex).children('button').removeClass('btn-default').removeClass('btn-grey').addClass('btn-success');
-
-    };
 
 //update conert list
     $('ul#dates li button').click(function(e){
@@ -157,18 +153,15 @@ $(document).ready(function(){
         getConcertsByButton(this, $(this).parent().index());
     });
 
-
     $('#next').click(function() {
         startDate.setDate(startDate.getDate() + 1);
         updateCalendar();
-        updateCurrentDate();
     });
 
     $('#prev').click(function() {
         //currentIndex = -1;
         startDate.setDate(startDate.getDate() -1);
         updateCalendar();
-        updateCurrentDate();
     });
 
 });
